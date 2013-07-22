@@ -1,0 +1,21 @@
+Feature list
+
+Draw simple shapes on stage
+Drag simple shapes on stage
+Animate simple shapes on stage
+
+Change shapes fill/stroke color
+Change stroke weight
+Rotate a shape
+
+Create UI
+ - Timebar shoulds show each shapes path
+ - Tool bar
+ - Properties panel
+
+Shapes
+Rectangle
+Square
+Circle
+Oval
+Star
