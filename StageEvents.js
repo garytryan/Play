@@ -1,6 +1,6 @@
-// This file handles all stage events
+// The stage is initiated
 
-var stage = {
+App.stage = {
 
   STAGE: new Kinetic.Stage({
             container: 'body',
@@ -9,7 +9,9 @@ var stage = {
             listening: true
         }),
 
+  // Adds event listening to the stage
   on: function(event, callback){
     this.STAGE.getContent().addEventListener(event, callback);
   }
+
 };
