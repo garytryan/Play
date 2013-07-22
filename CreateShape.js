@@ -12,8 +12,10 @@ var addShape = function(type){
 
   // set the initial starting cooridnates of the shape
   App.stage.on('mousedown', function(){
-    _shape.attrs.x = App.stage.STAGE.mousePos.x;
-    _shape.attrs.y = App.stage.STAGE.mousePos.y;
+    _shape.setAttrs({
+      x: App.stage.STAGE.mousePos.x,
+      y: App.stage.STAGE.mousePos.y
+    });
     editable = true;
 
     //Render
@@ -24,10 +26,10 @@ var addShape = function(type){
   // and re-render each time
   App.stage.on('mousemove', function(){
     if(editable){
-      var height, width;
-      width = App.stage.STAGE.mousePos.x  - _shape.getAttr('x');
-      height = App.stage.STAGE.mousePos.y - _shape.getAttr('y');
-      _shape.setAttrs({'width': width, 'height': height});
+      _shape.setAttrs({
+        'width': App.stage.STAGE.mousePos.x  - _shape.getAttr('x'),
+        'height': App.stage.STAGE.mousePos.y - _shape.getAttr('y')
+      });
 
       //Render
       App.stage.STAGE.add(shapeLayer.add(_shape));
