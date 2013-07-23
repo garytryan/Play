@@ -8,9 +8,9 @@ var cornerCollision = function(shape){
         y: shape.getAttr('y')
       };
 
+      var r = 50;
       var sX = App.stage.STAGE.mousePos.x;
       var sY = App.stage.STAGE.mousePos.y;
-      var r = 50;
 
         // top-left
       if((sX > prop.x - r && sX < prop.x + r) && 

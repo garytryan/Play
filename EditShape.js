@@ -1,28 +1,34 @@
 
 var editShape = function(shape){
-  editable = false;
+  var focus = false;
+  var editing = false;
 
   shape.on('mousedown', function(){
     shape.setAttr('fill', 'green');
-    editable = true;
+    focus = true;
     shapeLayer.draw();
   });
 
+
   App.stage.on('mousemove', function(){
-    if(editable){
+    if(focus){
       if(cornerCollision(shape)){
+         App.stage.on('mousedown', function(){
+            editing = true;
+         });
+         App.stage.on('mouseup', function(){
+            editing = false;
+         });
+      }
+    }
 
-        shape.on('mousedown', function(){
-          console.log('dragging corner');
-        });
-
+    if(focus && editing){
         shape.setAttrs({
           'fill' : 'red',
           'width': App.stage.STAGE.mousePos.x  - shape.getAttr('x'),
           'height': App.stage.STAGE.mousePos.y - shape.getAttr('y')
         });
-        shapeLayer.draw();
       }
-    }
+      shapeLayer.draw();
   });
 };
