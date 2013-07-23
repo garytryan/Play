@@ -10,8 +10,12 @@ App.stage = {
         }),
 
   // Adds event listening to the stage
-  on: function(event, callback){
-    this.STAGE.getContent().addEventListener(event, callback);
+  on: function(event, handler){
+    $(this.STAGE.getContent()).on(event, handler);
+  },
+
+  off: function(event, handler){
+    $(this.STAGE.getContent()).off(event, handler);
   }
 
 };
