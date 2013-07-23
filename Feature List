@@ -2,6 +2,14 @@ Feature list
 
 Draw simple shapes on stage
 Drag simple shapes on stage
+Edit Shapes -
+  need to remove event handlers to edit more then on shape
+   - add a shape
+   - edit shape
+   - add another shape
+   - edit
+   - both shape are in edit
+
 Animate simple shapes on stage
 
 Change shapes fill/stroke color
