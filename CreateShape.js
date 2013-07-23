@@ -1,4 +1,4 @@
-var shapeLayer = new Kinetic.Layer();
+
 
 var addShape = function(type){
   var editable = false;
@@ -6,7 +6,6 @@ var addShape = function(type){
   var defaultProp = {
     fill:        'blue',
     stroke:      'black',
-    draggable:    true
   };
 
   var _shape = new Kinetic[type](defaultProp);
