@@ -1,5 +1,4 @@
 // The stage is initiated
-
 App.stage = {
 
   STAGE: new Kinetic.Stage({
@@ -16,6 +15,6 @@ App.stage = {
 
   off: function(event, handler){
     $(this.STAGE.getContent()).off(event, handler);
-  }
+  },
 
 };

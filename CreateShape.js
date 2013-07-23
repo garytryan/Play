@@ -11,6 +11,9 @@ var addShape = function(type){
 
   var _shape = new Kinetic[type](defaultProp);
 
+  // Make shape editable
+  editShape(_shape);
+
   var mousedownHandler = function(){
     _shape.setAttrs({
       x: App.stage.STAGE.mousePos.x,
