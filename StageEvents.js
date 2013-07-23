@@ -3,8 +3,8 @@ App.stage = {
 
   STAGE: new Kinetic.Stage({
             container: 'body',
-            width: 600,
-            height: 200,
+            width: 800,
+            height: 800,
             listening: true
         }),
 
@@ -15,6 +15,6 @@ App.stage = {
 
   off: function(event, handler){
     $(this.STAGE.getContent()).off(event, handler);
-  },
+  }
 
 };

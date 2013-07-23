@@ -6,12 +6,13 @@ var addShape = function(type){
   var defaultProp = {
     fill:        'blue',
     stroke:      'black',
+    draggable:   'true'
   };
 
   var _shape = new Kinetic[type](defaultProp);
 
   // Make shape editable
-  editShape(_shape);
+  App.editShape.init(_shape);
 
   var mousedownHandler = function(){
     _shape.setAttrs({
