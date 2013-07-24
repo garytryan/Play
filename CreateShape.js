@@ -1,5 +1,3 @@
-
-
 var addShape = function(type){
   var editable = false;
 

@@ -1,26 +1,13 @@
-App.stopFrame = {
-  keys: [],
+App.tween = {
   frames: new Array(120),
 
-  init: function(){
-    this.keys = [];
-    this.sortKeys();
-    this.createFrames();
-    console.log('stopFrame-init');
-  },
-
-  sortKeys: function(){
-    for(var key in App.keyframes.reel){
-      this.keys.push(key);
-    }
-    this.keys.sort();
-  },
-
   createFrames: function(){
+    var reel = App.keyframes.getReel();
+
     // loop through start and end keys
-    for(var i = 0; i < this.keys.length-1; i++){
-      var startTime = this.keys[i];
-      var endTime = this.keys[i+1];
+    for(var i = 0; i < reel.length-1; i++){
+      var startTime = reel[i];
+      var endTime = reel[i+1];
       var timeDiff = endTime - startTime;
       var startKeyframe = App.keyframes.reel[startTime];
       var endKeyframe = App.keyframes.reel[endTime];
