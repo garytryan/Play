@@ -38,6 +38,7 @@ var addShape = function(type){
       });
 
       //Render
+
       shapeLayer.draw();
     }
   });

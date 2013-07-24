@@ -14,7 +14,6 @@ $(function(){
 // take snap shot of shape
 
 App.keyframes = {
-
   reel: {},
 
   add: function(target){
@@ -23,32 +22,47 @@ App.keyframes = {
       x: target.getAttr('x'),
       y: target.getAttr('y')
     };
+
+    App.stopFrame.init();
   }
 };
 
-var stopFrame = function(){
-  var keys = [];
-  var frames = new Array(120);
-  for(var key in App.keyframes.reel){
-    keys.push(key);
-  }
-  keys.sort();
-  // loop through start and end keys
-  for(var i = 0; i < keys.length-1; i++){
-    var diff = {};
-    var startTime = keys[i];
-    var endTime = keys[i+1];
-    var startKeyframe = App.keyframes.reel[startTime];
-    var endKeyframe = App.keyframes.reel[endTime];
+App.stopFrame = {
+  keys: [],
+  frames: new Array(120),
 
+  init: function(){
+    this.keys = [];
+    this.sortKeys();
+    this.createFrames();
+    console.log('stopFrame-init');
+  },
 
-    // push frames 
-    for(j = startTime; j < endTime; j++){
-      diff.x = (endKeyframe.x - startKeyframe.x / startTime - endTime) * j;
-      diff.y = (endKeyframe.y - startKeyframe.y / startTime - endTime) * j;
-      frames[j] = diff;
+  sortKeys: function(){
+    for(var key in App.keyframes.reel){
+      this.keys.push(key);
     }
-  }
+    this.keys.sort();
+  },
 
-  return frames;
+  createFrames: function(){
+    // loop through start and end keys
+    for(var i = 0; i < this.keys.length-1; i++){
+      var startTime = this.keys[i];
+      var endTime = this.keys[i+1];
+      var timeDiff = endTime - startTime;
+      var startKeyframe = App.keyframes.reel[startTime];
+      var endKeyframe = App.keyframes.reel[endTime];
+
+      // push frames
+      for(j = startTime; j < endTime; j++){
+        this.frames[j] = {
+            target: App.keyframes.reel[endTime].target,
+            x: startKeyframe.x + ((endKeyframe.x - startKeyframe.x) / timeDiff) * j,
+            y: startKeyframe.y + ((endKeyframe.y - startKeyframe.y) / timeDiff) * j
+          };
+        }
+      }
+      return this.frames;
+  }
 };
