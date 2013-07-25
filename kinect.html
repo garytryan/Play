@@ -2,11 +2,17 @@
   <head>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="kinect.js"></script>
+    <script src="RangeController.js"></script>
+    <style>
+      input[type='range']{
+        width: 500px;
+      }
+    </style>
   </head>
   <body id="body">
     <script src="app.js"></script>
     <script src="StageEvents.js"></script>
     <script src="CreateShape.js"></script>
-    <p>Hello</p>
+    <input type="range" value="0" min="0" max="6000" step="100" />
   </body>
 </html>
