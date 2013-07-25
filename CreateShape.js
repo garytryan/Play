@@ -2,10 +2,10 @@ App.makeAnimShape = function(object) {
   var result = object;
   result.newFrame = function(t){
     var keyFrames = {
-      0: {x: 0},
-      1000: {x: 0},
-      3000: {x: 300},
-      6000: {x: 400}
+      0:    {x: 0,   y: 0},
+      1000: {x: 0,   y: 0},
+      3000: {x: 300, y: 200},
+      6000: {x: 400, y: 200}
     };
 
     var keyframeTimes = [0, 1000, 3000, 6000];
@@ -23,8 +23,10 @@ App.makeAnimShape = function(object) {
     var startTime = keyframeTimes[scan -1];
     var endTime = keyframeTimes[scan];
     var duration = endTime - startTime;
-    var motionPerFrame = (keyFrames[endTime].x - keyFrames[startTime].x) / duration;
-    this.setAttr('x', keyFrames[startTime].x + motionPerFrame*(t - keyframeTimes[scan-1]));
+    for(var property in keyFrames[endTime]){
+      var motionPerFrame = (keyFrames[endTime][property] - keyFrames[startTime][property]) / duration;
+      this.setAttr(property, keyFrames[startTime][property] + motionPerFrame*(t - keyframeTimes[scan-1]));
+    }
   };
   return result;
 };
