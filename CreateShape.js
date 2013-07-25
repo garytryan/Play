@@ -1,11 +1,17 @@
 App.makeAnimShape = function(object) {
   var result = object;
   result.newFrame = function(t){
-    if(t < 1000){
-      this.setAttr('x', this.attrs.x + (0.005 * t));
-    }
-    if(t > 1000 && t < 1400){
-      this.setAttr('y', this.attrs.y + (0.005 * t));
+    var keyFrames = {
+      0: {x:0},
+      3000: {x: 600}
+    };
+    var keyframeTimes = [0, 3000];
+    startTime = keyframeTimes[0]; // The last vistited keyframe
+    endTime = keyframeTimes[1];
+    duration = endTime - startTime;
+    motionPerFrame = (keyFrames[endTime].x - keyFrames[startTime].x) / duration;
+    if(this.attrs.x < keyFrames[endTime].x){
+      this.setAttr('x', keyFrames[startTime].x + (motionPerFrame*t));
     }
   };
   return result;
