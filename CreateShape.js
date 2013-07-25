@@ -2,27 +2,30 @@ App.makeAnimShape = function(object) {
   var result = object;
   result.newFrame = function(t){
     var keyFrames = {
-      0: {x:0 },
+      0: {x: 0},
+      1000: {x: 0},
       3000: {x: 300},
       6000: {x: 600}
     };
 
-    var keyframeTimes = [0, 3000, 6000];
+    var keyframeTimes = [0, 1000, 3000, 6000];
 
-    scan = (function(){
+    // Based on the time calculate the current position of the object;
+
+    var scan = (function(){
       var result = 1;
       while(keyframeTimes[result] < t){
         result++;
       }
-      return result; //the index of the greatest keyframe which is smaller then t
+      return result;
     })();
 
-    startTime = keyframeTimes[scan -1];
-    endTime = keyframeTimes[scan];
-    duration = endTime - startTime;
-    motionPerFrame = (keyFrames[endTime].x - keyFrames[startTime].x) / duration;
+    var startTime = keyframeTimes[scan -1];
+    var endTime = keyframeTimes[scan];
+    var duration = endTime - startTime;
+    var motionPerFrame = (keyFrames[endTime].x - keyFrames[startTime].x) / duration;
     if(this.attrs.x < keyFrames[endTime].x){
-      this.setAttr('x', keyFrames[startTime].x + (motionPerFrame*t));
+      this.setAttr('x', keyFrames[startTime].x + motionPerFrame*(t - keyframeTimes[scan-1]));
     }
   };
   return result;
