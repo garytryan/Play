@@ -5,7 +5,7 @@ App.makeAnimShape = function(object) {
       0: {x: 0},
       1000: {x: 0},
       3000: {x: 300},
-      6000: {x: 600}
+      6000: {x: 400}
     };
 
     var keyframeTimes = [0, 1000, 3000, 6000];
@@ -24,9 +24,7 @@ App.makeAnimShape = function(object) {
     var endTime = keyframeTimes[scan];
     var duration = endTime - startTime;
     var motionPerFrame = (keyFrames[endTime].x - keyFrames[startTime].x) / duration;
-    if(this.attrs.x < keyFrames[endTime].x){
-      this.setAttr('x', keyFrames[startTime].x + motionPerFrame*(t - keyframeTimes[scan-1]));
-    }
+    this.setAttr('x', keyFrames[startTime].x + motionPerFrame*(t - keyframeTimes[scan-1]));
   };
   return result;
 };
@@ -54,15 +52,15 @@ App.addShape = {
 App.stage.STAGE.add(shapeLayer);
 
 App.addShape.init('Rect');
-// App.addShape.init('Rect', {
-//       x: 300,
-//       y: 300,
-//       height: 50,
-//       width: 50,
-//       fill:        'green',
-//       stroke:      'black',
-//       draggable:   'true'
-//     });
+App.addShape.init('Rect', {
+      x: 300,
+      y: 300,
+      height: 50,
+      width: 50,
+      fill:        'green',
+      stroke:      'black',
+      draggable:   'true'
+    });
 
 var anim = new Kinetic.Animation(function(frame) {
   var time = frame.time,
