@@ -3,9 +3,8 @@ App.stage = {
 
   STAGE: new Kinetic.Stage({
             container: 'body',
-            width: 600,
-            height: 200,
-            listening: true
+            width: 800,
+            height: 800
         }),
 
   // Adds event listening to the stage
@@ -15,6 +14,6 @@ App.stage = {
 
   off: function(event, handler){
     $(this.STAGE.getContent()).off(event, handler);
-  },
+  }
 
 };
