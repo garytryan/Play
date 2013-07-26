@@ -16,17 +16,17 @@ fabric.Object.prototype.anim = function(t){
       return result;
     })();
 
-    var startTime = keyIndex[scan -1];
-    var endTime = keyIndex[scan] || 0;
-    var duration = endTime - startTime;
+    var startKey = keyIndex[scan -1];
+    var endKey = keyIndex[scan] || 0;
+    var duration = endKey - startKey;
 
     var options = {};
-    for(var property in keyframes[endTime]){
+    for(var property in keyframes[endKey]){
       if(property === 'visible'){
-        options[property] = keyframes[startTime][property];
-      } else if (keyframes[startTime][property] && keyframes[startTime][property] !== keyframes[endTime][property]) {
-        var motionPerFrame = (keyframes[endTime][property] - keyframes[startTime][property]) / duration;
-        options[property] = keyframes[startTime][property] + motionPerFrame*(t - keyIndex[scan-1]);
+        options[property] = keyframes[startKey][property];
+      } else if (keyframes[startKey]['visible'] === true && keyframes[startKey][property] !== keyframes[endKey][property]) {
+        var motionPerFrame = (keyframes[endKey][property] - keyframes[startKey][property]) / duration;
+        options[property] = keyframes[startKey][property] + motionPerFrame*(t - keyIndex[scan-1]);
       }
     }
     this.set(options).setCoords();
