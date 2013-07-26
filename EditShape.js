@@ -3,8 +3,6 @@ var keyframeHandler = function(options){
 
   // create a new keyframe
   keyframes[App.currentFrame] = App.getProps(options.target);
-  //TODO: creates a bug where objects continue moving
-  //keyframes[6000] = App.getProps(options.target);
 
   // update the keyframe index array
   keyframes['index'].contains(App.currentFrame) || keyframes['index'].push(App.currentFrame);
