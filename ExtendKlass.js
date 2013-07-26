@@ -1,6 +1,6 @@
 App.addKeys = function(klass){
   var result = klass;
-  result.keyframes = {0: {top: 50, left: 50}, 2000:{top: 700, left: 400}, 4000:{top: 700, left: 800}, index:[0, 2000, 4000]};
+  result.keyframes = {index:[]};
   return result;
 };
 
