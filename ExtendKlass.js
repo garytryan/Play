@@ -32,6 +32,3 @@ fabric.Object.prototype.anim = function(t){
     this.set(options).setCoords();
     App.canvas.renderAll();
 };
-
-//should always have a 0 keyframes
-// 0 keyframe should be visible false
