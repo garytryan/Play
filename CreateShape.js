@@ -17,13 +17,8 @@ App.addShape = {
   }
 };
 
-App.addShape.init('Rect', {
-  top: 300, left: 300, height: 50, width: 50, fill: 'blue'
-});
 
-App.addShape.init('Rect', {
-  top: 100, left: 100, height: 50, width: 50, fill: 'red'
-});
+
 
 
 // var anim = new Kinetic.Animation(function(frame) {
