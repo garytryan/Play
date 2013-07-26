@@ -8,6 +8,8 @@ App.canvas.on('object:modified', function(options){
   prop['scaleX'] = options.target.scaleX;
   prop['scaleY'] = options.target.scaleY;
   prop['angle'] = options.target.angle;
+  prop['height'] = options.target.height;
+  prop['width'] = options.target.width;
 
   // create a new keyframe
   keyframes[App.currentFrame] = prop;
