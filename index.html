@@ -1,8 +1,11 @@
 <html>
   <head>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="Util.js"></script>
-    <script src="Shapebar.js"></script>
+    <script src="lib/fabric.js"></script>
+    <script src="lib/underscore-1.5.1.min.js"></script>
+    <script src="lib/jquery-2.0.3.min.js"></script>
+    <script src="lib/backbone-1.0.0.min.js"></script>
+    <script src="app/Util.js"></script>
+    <script src="app/Shapebar.js"></script>
     <style>
       input[type='range']{
         width: 500px;
@@ -11,18 +14,20 @@
   </head>
   <body id="body">
     <canvas id="c" width="800px" height="800px"></canvas>
-    <script src="lib/fabric.js"></script>
-    <script src="App.js"></script>
-    <script src="ExtendKlass.js"></script>
-    <script src="EditShape.js"></script>
-    <script src="AddShape.js"></script>
-    <script src="RangeController.js"></script>
-    <input type="range" value="0" min="0" max="6000" step="100" />
+    <script src="app/App.js"></script>
+    <script src="app/ExtendKlass.js"></script>
+    <script src="app/EditShape.js"></script>
+    <script src="app/AddShape.js"></script>
+    <script src="app/RangeController.js"></script>
+    <input type="range" value="0" min="0" max="6000" step="10" />
     <p id="frame" > 0 </p>
     <ul id="shapesbar">
       <li id="rect">Rectangle</li>
       <li id="circ">Circle</li>
       <li id="tri">Triangle</li>
+    </ul>
+    <ul>
+      <li></li>
     </ul>
   </body>
 </html>
