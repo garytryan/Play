@@ -17,7 +17,7 @@ fabric.Object.prototype.anim = function(t){
     })();
 
     var startKey = keyIndex[scan -1];
-    var endKey = keyIndex[scan] || 0;
+    var endKey = keyIndex[scan] || startKey;
     var duration = endKey - startKey;
 
     var options = {};
