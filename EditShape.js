@@ -1,50 +1,26 @@
-App.editShape = {
+var keyframeHandler = function(options){
+  var keyframes = options.target.keyframes;
 
-  focus: false,
-  editing: false,
-  shape: null,
+  // create a new keyframe
+  keyframes[App.currentFrame] = App.getProps(options.target);
 
-  init: function(shape){
-    this.shape = shape;
-    this.select();
-    this.updateKeyframes();
-  },
+  // update the keyframe index array
+  keyframes['index'].contains(App.currentFrame) || keyframes['index'].push(App.currentFrame);
+  keyframes['index'].sort(function sortNumber(a,b) {return a - b;});
+};
 
-  select: function(){
-    this.shape.on('mousedown', function(){
-      this.setAttr('fill', 'green');
-      this.focus = true;
-      shapeLayer.draw();
-    });
-  },
+App.canvas.on('object:modified', keyframeHandler);
+App.canvas.on('object:added', keyframeHandler);
 
-  // Add edits to keyframes
-  updateKeyframes: function(){
-    this.shape.on('dragend', function(){
-      App.keyframes.add(this);
-    });
-  }
-
-  // Drag Corners to edit size of shape
-  // App.stage.on('mousemove', function(){
-  //   if(focus){
-  //     if(cornerCollision(shape)){
-  //        App.stage.on('mousedown', function(){
-  //           editing = true;
-  //        });
-  //        App.stage.on('mouseup', function(){
-  //           editing = false;
-  //        });
-  //     }
-  //   }
-
-  //   if(focus && editing){
-  //       shape.setAttrs({
-  //         'fill' : 'red',
-  //         'width': App.stage.STAGE.mousePos.x  - shape.getAttr('x'),
-  //         'height': App.stage.STAGE.mousePos.y - shape.getAttr('y')
-  //       });
-  //     }
-  //     shapeLayer.draw();
-  // });
+App.getProps = function(target){
+  var prop = {};
+  prop['top']     = target.top;
+  prop['left']    = target.left;
+  prop['scaleX']  = target.scaleX;
+  prop['scaleY']  = target.scaleY;
+  prop['angle']   = target.angle;
+  prop['height']  = target.height;
+  prop['width']   = target.width;
+  prop['visible'] = true;
+  return prop;
 };

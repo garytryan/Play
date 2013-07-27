@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="Util.js"></script>
+    <script src="Shapebar.js"></script>
+    <style>
+      input[type='range']{
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <canvas id="c" width="800px" height="800px"></canvas>
+    <script src="lib/fabric.js"></script>
+    <script src="App.js"></script>
+    <script src="ExtendKlass.js"></script>
+    <script src="EditShape.js"></script>
+    <script src="AddShape.js"></script>
+    <script src="RangeController.js"></script>
+    <input type="range" value="0" min="0" max="6000" step="100" />
+    <p id="frame" > 0 </p>
+    <ul id="shapesbar">
+      <li id="rect">Rectangle</li>
+      <li id="circ">Circle</li>
+      <li id="tri">Triangle</li>
+    </ul>
+  </body>
+</html>
