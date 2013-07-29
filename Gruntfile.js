@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 
     watch: {
       client: {
-        files: ['app/js/**/*'],
+        files: ['**/*'],
         tasks: [],
         options: {
           livereload:LIVERLOAD_PORT
