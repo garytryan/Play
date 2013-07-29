@@ -1,23 +1,10 @@
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <style>
-      input[type='range']{
-        width: 500px;
-      }
-      <script data-main="scripts/main.js" src="scripts/require.js"></script>
-    </style>
+    <title>Kanvas</title>
+    <script data-main="js/main.js" src="js/require.js"></script>
   </head>
-  <body id="body">
-    <canvas id="c" width="800px" height="800px"></canvas>
-    <input type="range" value="0" min="0" max="6000" step="10" />
-    <p id="frame" > 0 </p>
-    <ul id="shapesbar">
-      <li id="rect">Rectangle</li>
-      <li id="circ">Circle</li>
-      <li id="tri">Triangle</li>
-    </ul>
-    <ul>
-      <li></li>
-    </ul>
+  <body>
+    <div id="container"></div>
   </body>
 </html>
