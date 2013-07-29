@@ -3,8 +3,8 @@ define(['jquery', 'underscore', 'backbone', 'collections/menu', 'text!templates/
     el: $('#container'),
     initialize: function(){
       this.collection = new menuCollection();
-      this.collection.add({ name: "Square" });
-      render();
+      this.collection.add({ title: "Square" });
+      this.render();
     },
     render: function(){
       var compiledTemplate = _.template(menuTemplate, { menuItems : this.collection.models });

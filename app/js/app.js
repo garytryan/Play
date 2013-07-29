@@ -1,7 +1,7 @@
-define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
-  var init = function(){
-    
+define(['jquery', 'underscore', 'backbone', 'views/menu'], function($, _, Backbone, menuView){
+  var initialize = function(){
+    new menuView();
   };
 
-  return { init: init };
+  return { initialize: initialize };
 });
