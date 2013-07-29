@@ -1,10 +1,10 @@
 define(['underscore', 'backbone'], function(_, Backbone){
-  var menuItemModel = Backbone.Model.extend({
+  var toolModel = Backbone.Model.extend({
     defaults: function(){
       return {
-        title: 'empty menu item'
+        name: '...'
       };
     }
   });
-  return menuItemModel;
+  return toolModel;
 });
