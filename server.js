@@ -8,5 +8,14 @@ app.get('/hello.txt', function(req, res){
   res.end(body);
 });
 
+// Basic static server
+app.use(express.static(__dirname + '/app'));
+
+// Error handling
+app.use(function(err, req, res, next){
+  console.error(err.stack);
+  res.send(500, 'Something broke!');
+});
+
 app.listen(9000);
 console.log('Listening on port 9000');
