@@ -1,8 +1,10 @@
-define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
+define(['jquery', 'underscore', 'backbone'], 
+  function($, _, Backbone, app){
   return Backbone.View.extend({
     className: 'reel',
+
     render: function(){
-      return this.$el.html('<input type="range" id="range" max="6000" min="0" step="10" />');
+      return this.$el.html('<input type="range" id="range" max="6000" min="0" value="0" step="10" />');
     },
 
     events: {
@@ -10,7 +12,7 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
     },
 
     scrub: function(e){
-      this.model.set({ frameNumber: $(e.currentTarget).val() });
+      this.model.scrub($(e.currentTarget).val());
     }
   });
 });

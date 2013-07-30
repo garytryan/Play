@@ -10,6 +10,6 @@ require.config({
   }
 });
 
-require(['models/app'], function(App){
+require(['views/app'], function(App){
   new App();
 });

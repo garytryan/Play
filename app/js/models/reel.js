@@ -1,9 +1,12 @@
-define(['jquery', 'underscore', 'backbone'],
-  function($, _, Backbone){
+define(['jquery', 'underscore', 'backbone', './app'],
+  function($, _, Backbone, app){
   return Backbone.Model.extend({
     initialize: function(){
       this.set({ 'frameNumber': 0 });
-      this.on('change:frameNumber', function(e){ console.log(this.get('frameNumber')); });
+    },
+
+    scrub: function(currentFrame){
+      app.currentFrame = currentFrame;
     }
   });
 });
