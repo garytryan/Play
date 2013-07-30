@@ -1,9 +1,3 @@
-App.addKeys = function(klass){
-  var result = klass;
-  result.keyframes = {0: {visible: false}, index:[0]};
-  return result;
-};
-
 fabric.Object.prototype.anim = function(t){
     var keyframes = this.keyframes;
     var keyIndex = this.keyframes.index;
