@@ -6,10 +6,11 @@ require.config({
     text: 'libs/require/text',
     json2: 'libs/json/json2',
     templates: 'templates',
-    fabric: 'libs/fabric/fabric'
+    fabric: 'libs/fabric/fabric',
+    kanvas: 'models/kanvas'
   }
 });
 
-require(['app'], function(App){
-  App.initialize();
+require(['models/app'], function(App){
+  new App();
 });

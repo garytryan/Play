@@ -1,12 +1,15 @@
-define(['jquery', 'underscore', 'backbone', './toolbar'], function($, _, Backbone, toolbarView) {
-  var appView = Backbone.View.extend({
+define(['jquery', 'underscore', 'backbone', './toolbar', './kanvas'],
+  function($, _, Backbone, toolbarView, kanvasView) {
+  return Backbone.View.extend({
     el: '#container',
     initialize: function(){
       this.render();
     },
     render: function(){
-      this.$el.append(new toolbarView().render());
+      var toolbar = new toolbarView();
+      this.$el.append([
+        toolbar.render()
+      ]);
     }
   });
-  return appView;
 });
