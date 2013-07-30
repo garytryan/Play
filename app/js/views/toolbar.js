@@ -4,9 +4,9 @@ define(['jquery', 'underscore', 'backbone', 'collections/toolbar', './tool'],
     tagName: "ul",
     initialize: function(){
       this.collection = new toolbarCollection([
-        { name: "Square" },
-        { name: "Circle" },
-        { name: "Triangle" }
+        { name: "Rectangle", type: "Rect" },
+        { name: "Circle", type: "Circle" },
+        { name: "Triangle", type: "Triangle"}
       ]);
     },
 
