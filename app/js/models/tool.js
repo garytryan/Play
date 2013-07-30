@@ -1,8 +1,6 @@
-define(['underscore', 'backbone', 'kanvas'], 
+define(['underscore', 'backbone', 'kanvas'],
   function(_, Backbone, kanvas){
   return Backbone.Model.extend({
-    initialize: function(){
-    },
 
     addKlass: function(){
       var type = this.get('type');
@@ -17,7 +15,7 @@ define(['underscore', 'backbone', 'kanvas'],
           break;
         case 'Circle':
           result.radius = 50;
-        break;
+          break;
       }
       return result;
     }
