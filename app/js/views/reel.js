@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone'], 
-  function($, _, Backbone, app){
+define(['jquery', 'underscore', 'backbone', '../models/kanvas'],
+  function($, _, Backbone, kanvas){
   return Backbone.View.extend({
     className: 'reel',
 
@@ -12,7 +12,14 @@ define(['jquery', 'underscore', 'backbone'],
     },
 
     scrub: function(e){
-      this.model.scrub($(e.currentTarget).val());
+      var currentFrame = e.currentTarget.value * 1;
+      this.model.scrub(currentFrame);
+
+      var klass = kanvas.getObjects();
+      for(var i = 0; i < klass.length; i++){
+        klass[i].anim(currentFrame);
+      }
+      kanvas.renderAll();
     }
   });
 });

@@ -8,5 +8,6 @@ define(['jquery', 'underscore', 'backbone', './app'],
     scrub: function(currentFrame){
       app.currentFrame = currentFrame;
     }
+
   });
 });

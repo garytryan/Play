@@ -1,5 +1,5 @@
-define(['../kanvas/getProperties', './reel', './app'],
-  function(getProperties, reel, app){
+define(['../kanvas/getProperties', './app'],
+  function(getProperties, app){
     var kanvas = new fabric.Canvas('kanvas');
 
     var keyframeHandler = function(options){
@@ -11,10 +11,9 @@ define(['../kanvas/getProperties', './reel', './app'],
       // update the keyframe index array
       keyframes['index'].indexOf(currentFrame) === -1 && keyframes['index'].push(currentFrame);
       keyframes['index'].sort(function sortNumber(a,b) {return a - b;});
-      console.log(currentFrame);
     };
 
     kanvas.on('object:modified', keyframeHandler);
-    // reel.listenTo('frameChange', function(){ console.log('changedframe'); });
+    kanvas.on('object:added', keyframeHandler);
     return kanvas;
 });
