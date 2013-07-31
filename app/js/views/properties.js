@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', '../models/kanvas', '../kanvas/getProperties', 'text!templates/properties.html'],
-  function($, _, Backbone, kanvas, getProperties, propertiesTemplate){
+define(['jquery', 'underscore', 'backbone', '../models/kanvas', '../kanvas/getProperties', './property'],
+  function($, _, Backbone, kanvas, getProperties, property){
     return Backbone.View.extend({
 
       initialize: function(){
@@ -8,12 +8,14 @@ define(['jquery', 'underscore', 'backbone', '../models/kanvas', '../kanvas/getPr
         kanvas.on('object:modified', this.onFocus);
         kanvas.on('object:moving', this.onFocus);
         kanvas.on('object:scaling', this.onFocus);
-        this.model.on('change', this.render);
+        this.collection.on('change', this.render);
       },
 
       render: function(){
-        var compliedTemplate = _.template(propertiesTemplate, { properties: this.model.get('properties') });
-        return this.$el.html(compliedTemplate);
+        this.$el.append(_(this.collection).map(function(propertyModel){
+          var thing = new property({ model: propertyModel }).render();
+          return thing;
+        }));
       },
 
       onFocus: function(klass){

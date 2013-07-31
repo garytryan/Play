@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', './toolbar', './reel', './properties','../models/reel', '../models/properties'],
-  function($, _, Backbone, toolbarView, reelView, propertiesView, reelModel, propertiesModel) {
+define(['jquery', 'underscore', 'backbone', './toolbar', './reel', './properties','../models/reel', '../collections/propertiesPanel'],
+  function($, _, Backbone, toolbarView, reelView, propertiesView, reelModel, propertiesCollection) {
   return Backbone.View.extend({
     el: '#container',
     initialize: function(){
@@ -8,7 +8,7 @@ define(['jquery', 'underscore', 'backbone', './toolbar', './reel', './properties
     render: function(){
       var toolbar = new toolbarView();
       var reel = new reelView({ model: new reelModel() });
-      var properties = new propertiesView({ model: new propertiesModel() });
+      var properties = new propertiesView({ collection: new propertiesCollection([{name: "top", value: 0}, {name: "left", value: 1}]) });
       this.$el.append([
         toolbar.render(),
         properties.render(),
