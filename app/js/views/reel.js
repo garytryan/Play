@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', '../models/kanvas'],
+define(['jquery', 'underscore', 'backbone', './kanvas'],
   function($, _, Backbone, kanvas){
   return Backbone.View.extend({
     className: 'reel',

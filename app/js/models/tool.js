@@ -1,4 +1,4 @@
-define(['underscore', 'backbone', './kanvas', '../kanvas/addKeys'],
+define(['underscore', 'backbone', '../views/kanvas', '../kanvas/addKeys'],
   function(_, Backbone, kanvas, addKeys){
   return Backbone.Model.extend({
 
