@@ -1,1 +1,1 @@
-define({});
+define({ currentFrame: 0 });
