@@ -1,21 +1,24 @@
-define(['jquery', 'underscore', 'backbone', 'collections/toolbar', './tool'],
-  function($, _, Backbone, toolbarCollection, toolView){
+define(['jquery', 'underscore', 'backbone', 'collections/toolbar', './tool', '../models/klass'],
+  function($, _, Backbone, toolbarCollection, toolView, klass){
   return Backbone.View.extend({
     tagName: "ul",
+    template: '<li class="Rect">Rectangle</li>' +
+              '<li class="Rect">Circle</li>' +
+              '<li class="Triangle">Triganle</li>',
+
     initialize: function(){
-      this.collection = new toolbarCollection([
-        { name: "Rectangle", type: "Rect" },
-        { name: "Circle", type: "Circle" },
-        { name: "Triangle", type: "Triangle"}
-      ]);
     },
 
     render: function(){
-      // var compiledTemplate = _.template(toolTemplate, { tools : this.collection.models });
-      var toolViews = _(this.collection.models).map(function(toolModel){
-        return new toolView({ model: toolModel }).render();
-      });
-      return this.$el.append(toolViews);
+      return this.$el.append(this.template);
+    },
+
+    events: {
+      'click' : 'addKlass'
+    },
+
+    addKlass: function(){
+      this.collection.add( new klass() );
     }
   });
 });

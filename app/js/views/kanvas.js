@@ -10,15 +10,20 @@ define(['../kanvas/getProperties', '../models/app'],
 
     kanvas: null,
     initialize: function(){
+      _.bindAll(this, 'render', 'addKlass');
       this.kanvas = new fabric.Canvas(this.el);
+      this.collection.on('add', this.addKlass);
     },
 
     render: function(){
-      _(this.collection.models).each(function(klass){
-        this.kanvas.add(new fabric.Rect( klass.get('properties') ));
-      }, this);
-      return this.kanvas;
+      this.kanvas.renderAll();
+    },
+
+    addKlass: function(klass){
+      this.kanvas.add(new fabric.Rect(klass.get('properties')));
+      this.render();
     }
+
   });
 
   //   var kanvas = new fabric.Canvas('kanvas');

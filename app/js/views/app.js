@@ -1,17 +1,19 @@
-define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar', 
+define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar',
         './reel', './properties','../models/reel', '../collections/propertiesPanel',
         '../collections/kanvas'],
-  function($, _, Backbone, kanvasView, toolbarView, 
+  function($, _, Backbone, kanvasView, toolbarView,
            reelView, propertiesView, reelModel, propertiesCollection,
            kanvasCollection) {
   return Backbone.View.extend({
     el: '#container',
     initialize: function(){
+      this.kanvas = new kanvasCollection([{type: 'Rect'}]);
       this.render();
     },
+
     render: function(){
-      var kanvas = new kanvasView({ collection: new kanvasCollection([{type: 'Rect'}]) });
-      var toolbar = new toolbarView();
+      var kanvas = new kanvasView({ collection: this.kanvas });
+      var toolbar = new toolbarView({ collection: this.kanvas });
       var reel = new reelView({ model: new reelModel() });
       var properties = new propertiesView({ collection: new propertiesCollection([{name: "top", value: 0}, {name: "left", value: 1}]) });
       this.$el.append([
