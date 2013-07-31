@@ -8,12 +8,12 @@ define(['../kanvas/getProperties', '../models/app'],
       'width' : '800px'
     },
 
-    kanvas: null,
     initialize: function(){
       _.bindAll(this, 'render', 'addKlass');
       this.kanvas = new fabric.Canvas(this.el);
       this.collection.on('add', this.addKlass);
       this.collection.on('change', this.render);
+      window.k = this.kanvas;
     },
 
     render: function(){
@@ -21,7 +21,12 @@ define(['../kanvas/getProperties', '../models/app'],
     },
 
     addKlass: function(klass){
-      this.kanvas.add(new fabric[klass.get('type')](klass.attributes));
+      var addKeys = function(klass){
+          var result = klass;
+          result.keyframes = {0: {visible: false}, index:[0]};
+          return result;
+      };
+      this.kanvas.add(addKeys(new fabric[klass.get('type')](klass.attributes)));
     }
 
   });
