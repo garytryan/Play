@@ -14,7 +14,7 @@ define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar',
     render: function(){
       var kanvas = new kanvasView({ collection: this.kanvas });
       var toolbar = new toolbarView({ collection: this.kanvas });
-      var reel = new reelView({ model: new reelModel() });
+      var reel = new reelView({ collection: this.kanvas });
       var properties = new propertiesView({ collection: new propertiesCollection([{name: "top", value: 0}, {name: "left", value: 1}]) });
       this.$el.append([
         kanvas.render(),

@@ -13,13 +13,7 @@ define(['jquery', 'underscore', 'backbone', './kanvas'],
 
     scrub: function(e){
       var currentFrame = e.currentTarget.value * 1;
-      this.model.scrub(currentFrame);
-
-      var klass = kanvas.getObjects();
-      for(var i = 0; i < klass.length; i++){
-        klass[i].anim(currentFrame);
-      }
-      kanvas.renderAll();
+      this.collection.meta('currentFrame', currentFrame);
     }
   });
 });

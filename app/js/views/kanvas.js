@@ -9,9 +9,10 @@ define(['../kanvas/getProperties', '../models/app'],
     },
 
     initialize: function(){
-      _.bindAll(this, 'render', 'addKlass');
+      _.bindAll(this, 'render', 'addKlass', 'updateKlass');
       this.kanvas = new fabric.Canvas(this.el);
       this.collection.on('add', this.addKlass);
+      this.collection.on('change:currentFrame', this.updateKlass);
       this.collection.on('change', this.render);
       window.k = this.kanvas;
     },
@@ -21,14 +22,29 @@ define(['../kanvas/getProperties', '../models/app'],
     },
 
     addKlass: function(klass){
-      var addKeys = function(klass){
-          var result = klass;
-          result.keyframes = {0: {visible: false}, index:[0]};
-          return result;
-      };
-      this.kanvas.add(addKeys(new fabric[klass.get('type')](klass.attributes)));
+      this.kanvas.add(new fabric[klass.get('type')](klass.attributes));
+      klass.addKeyframe();
+      console.log(klass);
+    },
+
+    updateKlass: function(currentFrame){
+      var klass = this.kanvas.getObjects();
+      for(var i = 0; i < klass.length; i++){
+        klass[i].anim(currentFrame);
+      }
+      this.render();
     }
 
+    // addKeyframe: function(klass){
+    //   var currentFrame = this.collection.meta('currentFrame');
+    //   var keyframes = klass.get('keyframes');
+    //   keyframes[currentFrame] = 'hello';
+    //   console.log(this.collection.models);
+      // create a new keyframe
+      // update the keyframe index array
+    //   keyframes['index'].indexOf(currentFrame) === -1 && keyframes['index'].push(currentFrame);
+    //   keyframes['index'].sort(function sortNumber(a,b) {return a - b;});
+    // }
   });
 
   //   var kanvas = new fabric.Canvas('kanvas');
