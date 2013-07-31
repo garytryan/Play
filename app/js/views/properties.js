@@ -1,6 +1,7 @@
 define(['jquery', 'underscore', 'backbone', '../models/kanvas', '../kanvas/getProperties', './property'],
   function($, _, Backbone, kanvas, getProperties, property){
     return Backbone.View.extend({
+      tagName: 'ul',
 
       initialize: function(){
         _.bindAll(this, 'onFocus', 'render');
@@ -12,7 +13,7 @@ define(['jquery', 'underscore', 'backbone', '../models/kanvas', '../kanvas/getPr
       },
 
       render: function(){
-        this.$el.append(_(this.collection).map(function(propertyModel){
+        return this.$el.append(_(this.collection).map(function(propertyModel){
           var thing = new property({ model: propertyModel }).render();
           return thing;
         }));
