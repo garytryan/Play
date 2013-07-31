@@ -2,9 +2,9 @@ define(['jquery', 'underscore', 'backbone', 'collections/toolbar', './tool', '..
   function($, _, Backbone, toolbarCollection, toolView, klass){
   return Backbone.View.extend({
     tagName: "ul",
-    template: '<li class="Rect">Rectangle</li>' +
-              '<li class="Rect">Circle</li>' +
-              '<li class="Triangle">Triganle</li>',
+    template: '<li data-type="Rect">Rectangle</li>' +
+              '<li data-type="Circle">Circle</li>' +
+              '<li data-type="Triangle">Triangle</li>',
 
     initialize: function(){
     },
@@ -17,8 +17,8 @@ define(['jquery', 'underscore', 'backbone', 'collections/toolbar', './tool', '..
       'click' : 'addKlass'
     },
 
-    addKlass: function(){
-      this.collection.add( new klass() );
+    addKlass: function(e){
+      this.collection.add(new klass({ type: $(e.target).data('type') }));
     }
   });
 });

@@ -13,6 +13,7 @@ define(['../kanvas/getProperties', '../models/app'],
       _.bindAll(this, 'render', 'addKlass');
       this.kanvas = new fabric.Canvas(this.el);
       this.collection.on('add', this.addKlass);
+      this.collection.on('change', this.render);
     },
 
     render: function(){
@@ -20,8 +21,7 @@ define(['../kanvas/getProperties', '../models/app'],
     },
 
     addKlass: function(klass){
-      this.kanvas.add(new fabric.Rect(klass.get('properties')));
-      this.render();
+      this.kanvas.add(new fabric[klass.get('type')](klass.attributes));
     }
 
   });
