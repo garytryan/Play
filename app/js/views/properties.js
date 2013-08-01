@@ -5,16 +5,17 @@ define(['jquery', 'underscore', 'backbone', './kanvas', '../kanvas/getProperties
 
       initialize: function(){
         _.bindAll(this, 'render');
-        this.model.on('object:selected', this.render);
-        this.model.on('selection:cleared', this.render);
-        this.model.on('change:currentFrame', this.render);
-        this.model.on('object:moving', this.render);
-        this.model.on('object:scaling', this.render);
-        this.model.on('object:rotating', this.render);
+        this.stage = this.model.stage;
+        this.stage.on('object:selected', this.render);
+        this.stage.on('selection:cleared', this.render);
+        this.stage.on('change:currentFrame', this.render);
+        this.stage.on('object:moving', this.render);
+        this.stage.on('object:scaling', this.render);
+        this.stage.on('object:rotating', this.render);
       },
 
       render: function(){
-        var active = this.model.getActiveObject();
+        var active = this.stage.getActiveObject();
         if(active !== undefined && active !== null){
           this.$el.html(
             '<input type="text" data-property="left" value="' + Math.ceil(active.left) + '" ></input>'+
@@ -34,7 +35,7 @@ define(['jquery', 'underscore', 'backbone', './kanvas', '../kanvas/getProperties
       },
 
       input: function(e){
-        var active = this.model.getActiveObject();
+        var active = this.stage.getActiveObject();
         if(e.keyCode === 13){
           var property = $(e.target).data('property');
           var val = $(e.target).val() * 1;
@@ -45,8 +46,8 @@ define(['jquery', 'underscore', 'backbone', './kanvas', '../kanvas/getProperties
           }
           active.set(property,val);
           active.setCoords();
-          this.model.renderAll();
-          this.model.trigger('object:modified', {target: active});
+          this.stage.renderAll();
+          this.stage.trigger('object:modified', {target: active});
         }
 
       }

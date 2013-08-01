@@ -7,6 +7,7 @@ define(['jquery', 'underscore', 'backbone'],
               '<li data-type="Triangle">Triangle</li>',
 
     initialize: function(){
+      this.stage = this.model.stage;
     },
 
     render: function(){
@@ -24,7 +25,7 @@ define(['jquery', 'underscore', 'backbone'],
         result.keyframes = {0: {visible: false}, index:[0]};
         return result;
       };
-      this.model.add(klass());
+      this.stage.add(klass());
     }
   });
 });

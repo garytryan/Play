@@ -3,6 +3,10 @@ define(['jquery', 'underscore', 'backbone', './kanvas'],
   return Backbone.View.extend({
     className: 'reel',
 
+    initialize: function(){
+      this.stage = this.model.stage;
+    },
+
     render: function(){
       return this.$el.html('<input type="range" id="range" max="6000" min="0" value="0" step="10" />');
     },
@@ -13,13 +17,13 @@ define(['jquery', 'underscore', 'backbone', './kanvas'],
 
     scrub: function(e){
       var currentFrame = e.currentTarget.value * 1;
-      this.model.meta('currentFrame', currentFrame);
-      var klass = this.model.getObjects();
+      this.stage.meta('currentFrame', currentFrame);
+      var klass = this.stage.getObjects();
       for(var i = 0; i < klass.length; i++){
         klass[i].anim(currentFrame);
       }
-      this.model.renderAll();
-      this.model.trigger('modified');
+      this.stage.renderAll();
+      this.stage.trigger('modified');
     }
   });
 });
