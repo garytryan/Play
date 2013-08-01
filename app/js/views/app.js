@@ -1,9 +1,5 @@
-define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar',
-        './reel', './properties','../models/reel', '../collections/propertiesPanel',
-        '../collections/kanvas'],
-  function($, _, Backbone, kanvasView, toolbarView,
-           reelView, propertiesView, reelModel, propertiesCollection,
-           kanvasCollection) {
+define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar', './reel', './properties'],
+  function($, _, Backbone, kanvasView, toolbarView, reelView, propertiesView) {
   return Backbone.View.extend({
     el: '#container',
     initialize: function(){

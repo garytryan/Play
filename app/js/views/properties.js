@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', './kanvas', '../kanvas/getProperties', './property'],
-  function($, _, Backbone, kanvas, getProperties, propertyView){
+define(['jquery', 'underscore', 'backbone', './kanvas', '../kanvas/getProperties'],
+  function($, _, Backbone, kanvas, getProperties){
     return Backbone.View.extend({
       tagName: 'ul',
 

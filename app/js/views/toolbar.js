@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'collections/toolbar', './tool', '../models/klass'],
-  function($, _, Backbone, toolbarCollection, toolView, klass){
+define(['jquery', 'underscore', 'backbone'],
+  function($, _, Backbone){
   return Backbone.View.extend({
     tagName: "ul",
     template: '<li data-type="Rect">Rectangle</li>' +

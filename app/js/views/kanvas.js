@@ -1,15 +1,5 @@
-define(['../kanvas/getProperties', '../models/app'],
-  function(getProperties, app){
+define(['../kanvas/getProperties'],
+  function(getProperties){
   return Backbone.View.extend({
-    el: '#kanvas',
-
-    attributes: {
-      'height': '400px',
-      'width' : '800px'
-    },
-
-    initialize: function(){
-    },
-
   });
 });
