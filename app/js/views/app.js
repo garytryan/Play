@@ -2,6 +2,7 @@ define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar', './reel', '
   function($, _, Backbone, kanvasView, toolbarView, reelView, propertiesView, kanvasModel) {
   return Backbone.View.extend({
     el: '#container',
+
     initialize: function(){
       this.stage = new kanvasModel();
       this.toolbar = new toolbarView({ model: this.stage });
