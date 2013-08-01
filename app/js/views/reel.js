@@ -19,6 +19,7 @@ define(['jquery', 'underscore', 'backbone', './kanvas'],
         klass[i].anim(currentFrame);
       }
       this.model.renderAll();
+      this.model.trigger('modified');
     }
   });
 });

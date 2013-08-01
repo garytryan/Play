@@ -9,7 +9,6 @@ define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar',
     initialize: function(){
       _.bindAll(this, 'addKeyframe');
       this.stage = new fabric.Canvas('kanvas');
-      this.kanvas = this.stage._objects;
       this.stage._meta = { currentFrame: 0 };
       this.stage.meta = function(prop, value){
         if(value === undefined){
@@ -22,16 +21,14 @@ define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar',
       this.stage.on('object:modified', this.addKeyframe );
       this.stage.on('object:added', this.addKeyframe );
       this.render();
-
+      window.k = this.stage;
     },
 
     render: function(){
-      var kanvas = new kanvasView({ collection: this.kanvas });
       var toolbar = new toolbarView({ model: this.stage });
       var reel = new reelView({ model: this.stage });
       var properties = new propertiesView({ model: this.stage });
       this.$el.append([
-        kanvas.render(),
         toolbar.render(),
         properties.render(),
         reel.render()
@@ -39,6 +36,7 @@ define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar',
     },
 
     addKeyframe: function(klass){
+      console.log('addKeyframe');
       var keyframes    = klass.target.keyframes,
           currentFrame = this.stage.meta('currentFrame');
       // create a new keyframe
@@ -59,7 +57,6 @@ define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar',
       // update the keyframe index array
       keyframes['index'].indexOf(currentFrame) === -1 && keyframes['index'].push(currentFrame);
       keyframes['index'].sort(function sortNumber(a,b) {return a - b;});
-      console.log(klass);
     }
   });
 });
