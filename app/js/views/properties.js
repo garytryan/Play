@@ -4,29 +4,36 @@ define(['jquery', 'underscore', 'backbone', './kanvas', '../kanvas/getProperties
       tagName: 'ul',
 
       initialize: function(){
-        _.bindAll(this, 'onFocus', 'render');
-        // kanvas.on('object:selected', this.onFocus);
-        // kanvas.on('object:modified', this.onFocus);
-        // kanvas.on('object:moving', this.onFocus);
-        // kanvas.on('object:scaling', this.onFocus);
-        this.collection.on('change', this.render);
+        _.bindAll(this, 'render');
+        this.model.on('object:selected', this.render);
+        this.model.on('object:moving', this.render);
+        this.model.on('object:scaling', this.render);
+        this.model.on('object:rotaing', this.render);
       },
 
       render: function(){
-        return this.$el.append(_(this.collection.models).map(function(propertyModel){
-          var thing = new propertyView({ model: propertyModel }).render();
-          return thing;
-        }));
+        var active = this.model.getActiveObject();
+        if(active !== undefined){
+          this.$el.html('<input type="text" value="' + active.left + '" ></input>');
+        } else {
+          this.$el.html('<p>Nothing</p>');
+        }
+        return this.$el;
       },
 
-      onFocus: function(klass){
-        this.model.set('properties',{
-          'top'   : klass.target.top,
-          'left'  : klass.target.left,
-          'height': klass.target.height * klass.target.scaleY,
-          'width' : klass.target.width * klass.target.scaleX
-        });
+      events: {
+        'keyup input' : 'input'
+      },
+
+      input: function(e){
+        var active = this.model.getActiveObject();
+        if(e.keyCode === 13){
+          active.set('left', $(e.target).val());
+          active.setCoords();
+          this.model.renderAll();
+        }
       }
+
 
   });
 });

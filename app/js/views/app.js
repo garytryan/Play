@@ -22,13 +22,14 @@ define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar',
       this.stage.on('object:modified', this.addKeyframe );
       this.stage.on('object:added', this.addKeyframe );
       this.render();
+
     },
 
     render: function(){
       var kanvas = new kanvasView({ collection: this.kanvas });
       var toolbar = new toolbarView({ model: this.stage });
       var reel = new reelView({ model: this.stage });
-      var properties = new propertiesView({ collection: new propertiesCollection([{name: "top", value: 0}, {name: "left", value: 1}]) });
+      var properties = new propertiesView({ model: this.stage });
       this.$el.append([
         kanvas.render(),
         toolbar.render(),
