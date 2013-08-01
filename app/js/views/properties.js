@@ -1,7 +1,16 @@
-define(['jquery', 'underscore', 'backbone','../kanvas/getProperties'],
-  function($, _, Backbone, getProperties){
+define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templates/properties'],
+  function($, _, Backbone, getProperties, template){
     return Backbone.View.extend({
       tagName: 'ul',
+      template: function(active){
+                  return template({properties: [
+                    {name: 'top', value: Math.round(active.top)},
+                    {name: 'left', value: Math.round(active.left)},
+                    {name: 'height', value: Math.round(active.scaleY * active.height)},
+                    {name: 'width', value: Math.round(active.scaleX * active.width)},
+                    {name: 'angle', value: Math.round(active.angle)}
+                  ]});
+                },
 
       initialize: function(){
         _.bindAll(this, 'render');
@@ -17,13 +26,7 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties'],
       render: function(){
         var active = this.stage.getActiveObject();
         if(active !== undefined && active !== null){
-          this.$el.html(
-            '<input type="text" data-property="left" value="' + Math.ceil(active.left) + '" ></input>'+
-            '<input type="text" data-property="top" value="' + Math.ceil(active.top) + '" ></input>'+
-            '<input type="text" data-property="scaleX" value="' + Math.ceil(active.scaleX * active.height) + '" ></input>'+
-            '<input type="text" data-property="scaleY" value="' + Math.ceil(active.scaleY * active.width) +'" ></input>'+
-            '<input type="text" data-property="angle" value="' + Math.ceil(active.angle) + '" ></input>'
-            );
+          this.$el.html(this.template(active));
         } else {
           this.$el.html('<p>Nothing</p>');
         }
@@ -31,12 +34,13 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties'],
       },
 
       events: {
-        'keyup input' : 'input'
+        'keyup input[type="text"]'   : 'input',
+        'change input[type="range"]' : 'input'
       },
 
       input: function(e){
         var active = this.stage.getActiveObject();
-        if(e.keyCode === 13){
+        if(e.keyCode === 13 || e.type === 'change'){
           var property = $(e.target).data('property');
           var val = $(e.target).val() * 1;
           if(property === 'scaleX'){
@@ -49,7 +53,6 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties'],
           this.stage.renderAll();
           this.stage.trigger('object:modified', {target: active});
         }
-
       }
 
 
