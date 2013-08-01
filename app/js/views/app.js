@@ -20,6 +20,7 @@ define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar',
         }
       };
       this.stage.on('object:modified', this.addKeyframe );
+      this.stage.on('object:added', this.addKeyframe );
       this.render();
     },
 

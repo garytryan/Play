@@ -14,6 +14,11 @@ define(['jquery', 'underscore', 'backbone', './kanvas'],
     scrub: function(e){
       var currentFrame = e.currentTarget.value * 1;
       this.model.meta('currentFrame', currentFrame);
+      var klass = this.model.getObjects();
+      for(var i = 0; i < klass.length; i++){
+        klass[i].anim(currentFrame);
+      }
+      this.model.renderAll();
     }
   });
 });
