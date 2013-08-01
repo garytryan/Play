@@ -4,18 +4,17 @@ define(['jquery', 'underscore', 'backbone', './kanvas', './toolbar', './reel', '
     el: '#container',
     initialize: function(){
       this.stage = new kanvasModel();
-      window.k = this.stage;
+      this.toolbar = new toolbarView({ model: this.stage });
+      this.reel = new reelView({ model: this.stage });
+      this.properties = new propertiesView({ model: this.stage });
       this.render();
     },
 
     render: function(){
-      var toolbar = new toolbarView({ model: this.stage });
-      var reel = new reelView({ model: this.stage });
-      var properties = new propertiesView({ model: this.stage });
       this.$el.append([
-        toolbar.render(),
-        properties.render(),
-        reel.render()
+        this.toolbar.render(),
+        this.properties.render(),
+        this.reel.render()
       ]);
     }
   });
