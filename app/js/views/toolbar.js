@@ -1,10 +1,12 @@
-define(['jquery', 'underscore', 'backbone'],
-  function($, _, Backbone){
+define(['jquery', 'underscore', 'backbone', '../templates/tool'],
+  function($, _, Backbone, template){
   return Backbone.View.extend({
     tagName: "ul",
-    template: '<li data-type="Rect">Rectangle</li>' +
-              '<li data-type="Circle">Circle</li>' +
-              '<li data-type="Triangle">Triangle</li>',
+    template: template({tools: [
+      {name: 'Rectangle', type: 'Rect'},
+      {name: 'Triangle',  type: 'Triangle'},
+      {name: 'Circle',    type: 'Circle'}
+    ]}),
 
     initialize: function(){
       this.stage = this.model.stage;
