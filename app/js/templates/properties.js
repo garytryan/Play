@@ -3,8 +3,8 @@ define(['../libs/handlebars/handlebars'], function(handlebars){
    '{{#each properties}}' +
    '<li>' +
    '<label>{{name}}</label>' +
-   '<input type="text" data-property="{{name}}" value="{{value}}" ></input>' +
-   '<input type="range" data-property="{{name}}" value="{{value}}" max="400" min="0" step="1"></input>' +
+   '<input type="text" data-property="{{property}}" value="{{value}}" ></input>' +
+   '<input type="range" data-property="{{property}}" value="{{value}}" max="400" min="0" step="1"></input>' +
    '</li>' +
    '{{/each}}';
   var template = Handlebars.compile(source);

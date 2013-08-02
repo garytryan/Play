@@ -54,8 +54,8 @@ define(['../kanvas/getProperties'],
           break;
         case 'Star':
           properties['numPoints'] = 5;
-          properties['innerRadius'] = 50;
-          properties['outerRadius'] = 100;
+          properties['innerRadius'] = 40;
+          properties['outerRadius'] = 80;
       }
       return properties;
     },
@@ -73,6 +73,11 @@ define(['../kanvas/getProperties'],
       keyframe['fill']    = target.fill;
       if(target.type === 'Circle'){
         keyframe['radius'] = target.radius;
+      }
+      else if (target.type === 'Star'){
+        keyframe['numPoints'] = target.numPoints;
+        keyframe['innerRadius'] = target.innerRadius;
+        keyframe['outerRadius'] = target.outerRadius;
       }
       return keyframe;
     }

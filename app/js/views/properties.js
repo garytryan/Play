@@ -4,17 +4,23 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
       tagName: 'ul',
       template: function(active){
                   var properties = [
-                    {name: 'top', value: Math.round(active.top)},
-                    {name: 'left', value: Math.round(active.left)},
-                    {name: 'angle', value: Math.round(active.angle)}
+                    {name: 'top', property: 'top', value: Math.round(active.top)},
+                    {name: 'left', property: 'left', value: Math.round(active.left)},
+                    {name: 'angle', property: 'angle', value: Math.round(active.angle)}
                   ];
                   switch(active.get('type')){
                     case 'Rect' || 'Triangle':
-                      properties.push({name: 'height', value: Math.round(active.scaleY * active.height)},
-                                      {name: 'width', value: Math.round(active.scaleX * active.width)});
+                      properties.push({name: 'height', property: 'height', value: Math.round(active.scaleY * active.height)},
+                                      {name: 'width', property: 'width', value: Math.round(active.scaleX * active.width)});
                       break;
                     case 'Circle':
-                      properties.push({name: 'radius', value: Math.round(active.radius)});
+                      properties.push({name: 'radius', property: 'radius' ,value: Math.round(active.radius)});
+                      break;
+                    case 'Star':
+                      properties.push({name: 'points', property: 'numPoints', value: active.numPoints});
+                      properties.push({name: 'innerRadius', property: 'innerRadius', value: active.innerRadius});
+                      properties.push({name: 'outerRadius', property: 'outerRadius', value: active.outerRadius});
+                      break;
                   }
                   return template({properties: properties});
                 },
@@ -62,6 +68,13 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
             activeKlass.setRadius(value);
           } else if(property === 'fill'){
             activeKlass.setFill(value);
+          // for stars
+          } else if (property === 'numPoints'){
+            activeKlass.setNumPoints(value);
+          } else if (property === 'innerRadius'){
+            activeKlass.setInnerRadius(value);
+          } else if (property === 'outerRadius'){
+            activeKlass.setOuterRadius(value);
           } else {
             activeKlass.set(property,value);
           }
