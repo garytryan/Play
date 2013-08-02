@@ -4,7 +4,7 @@ define(['../libs/handlebars/handlebars'], function(handlebars){
    '<li>' +
    '<label>{{name}}</label>' +
    '<input type="text" data-property="{{property}}" value="{{value}}" ></input>' +
-   '<input type="range" data-property="{{property}}" value="{{value}}" max="400" min="0" step="1"></input>' +
+   '<input type="range" data-property="{{property}}" value="{{value}}" max="{{max}}" min="{{min}}" step="{{step}}"></input>' +
    '</li>' +
    '{{/each}}';
   var template = Handlebars.compile(source);

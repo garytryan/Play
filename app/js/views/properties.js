@@ -4,22 +4,22 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
       tagName: 'ul',
       template: function(active){
                   var properties = [
-                    {name: 'top', property: 'top', value: Math.round(active.top)},
-                    {name: 'left', property: 'left', value: Math.round(active.left)},
-                    {name: 'angle', property: 'angle', value: Math.round(active.angle)}
+                    {name: 'top', property: 'top', value: Math.round(active.top), max: this.stage.height, min: 0, step:1},
+                    {name: 'left', property: 'left', value: Math.round(active.left), max: this.stage.width, min: 0, step:1},
+                    {name: 'angle', property: 'angle', value: Math.round(active.angle), max: 400, min: 0, step:1}
                   ];
                   switch(active.get('type')){
                     case 'Rect' || 'Triangle':
-                      properties.push({name: 'height', property: 'height', value: Math.round(active.scaleY * active.height)},
-                                      {name: 'width', property: 'width', value: Math.round(active.scaleX * active.width)});
+                      properties.push({name: 'height', property: 'height', value: Math.round(active.scaleY * active.height), max: 2000, min: 0, step:1},
+                                      {name: 'width', property: 'width', value: Math.round(active.scaleX * active.width),  max: 2000, min: 0, step:1});
                       break;
                     case 'Circle':
-                      properties.push({name: 'radius', property: 'radius' ,value: Math.round(active.radius)});
+                      properties.push({name: 'radius', property: 'radius' ,value: Math.round(active.radius), max: 1000, min: 0, step:1});
                       break;
                     case 'Star':
-                      properties.push({name: 'points', property: 'numPoints', value: active.numPoints});
-                      properties.push({name: 'innerRadius', property: 'innerRadius', value: active.innerRadius});
-                      properties.push({name: 'outerRadius', property: 'outerRadius', value: active.outerRadius});
+                      properties.push({name: 'points', property: 'numPoints', value: active.numPoints, max: 80, min: 2, step:1});
+                      properties.push({name: 'innerRadius', property: 'innerRadius', value: active.innerRadius, max: 1000, min: 0, step:1});
+                      properties.push({name: 'outerRadius', property: 'outerRadius', value: active.outerRadius,  max: 1000, min: 0, step:1});
                       break;
                   }
                   return template({properties: properties});
