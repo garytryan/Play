@@ -23,7 +23,7 @@ define(['jquery', 'underscore', 'backbone'],
         klass[i].anim(currentFrame);
       }
       this.stage.renderAll();
-      this.stage.trigger('modified');
+      // this.stage.trigger('modified');
     }
   });
 });

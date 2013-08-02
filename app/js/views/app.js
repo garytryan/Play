@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', './toolbar', './reel', './properties', '../models/kanvas'],
-  function($, _, Backbone, toolbarView, reelView, propertiesView, kanvasModel) {
+define(['jquery', 'underscore', 'backbone', './toolbar', './reel', './properties', './timeline', '../models/kanvas'],
+  function($, _, Backbone, toolbarView, reelView, propertiesView, timelineView, kanvasModel) {
   return Backbone.View.extend({
     el: '#container',
 
@@ -8,6 +8,7 @@ define(['jquery', 'underscore', 'backbone', './toolbar', './reel', './properties
       this.toolbar = new toolbarView({ model: this.stage });
       this.reel = new reelView({ model: this.stage });
       this.properties = new propertiesView({ model: this.stage });
+      this.timeline = new timelineView({ model: this.stage });
       this.render();
     },
 
@@ -15,7 +16,8 @@ define(['jquery', 'underscore', 'backbone', './toolbar', './reel', './properties
       this.$el.append([
         this.toolbar.render(),
         this.properties.render(),
-        this.reel.render()
+        this.reel.render(),
+        this.timeline.render()
       ]);
     }
   });

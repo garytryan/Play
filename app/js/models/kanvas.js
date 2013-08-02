@@ -1,5 +1,5 @@
-define(
-  function(){
+define(['jquery', 'underscore', 'backbone'],
+  function($, _, Backbone){
   return Backbone.Model.extend({
     initialize: function(){
       // instantiate a new canvas using fabric http://fabricjs.com/
@@ -34,7 +34,10 @@ define(
     addKlass: function(type){
       var klass = new fabric[type](this.defaultKlass(type));
       // create keyframes
-      klass.keyframes ={0: {visible: false}, index:[0]};
+      var properties = this.defaultKlass(type);
+      properties['visible'] = false;
+      klass.keyframes ={0: properties, index:[0]};
+      klass.keyframes[this.stage.meta('currentFrame')] = this.defaultKlass(type);
       klass.set('type', type);
       this.stage.setActiveObject(klass);
       // uses farbic add method to insert modified klass objects onto the stage

@@ -7,6 +7,7 @@ fabric.Object.prototype.anim = function(t){
       while(keyIndex[result] < t){
         result++;
       }
+      t === 0 && result++;
       return result;
     })();
 
