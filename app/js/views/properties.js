@@ -1,7 +1,19 @@
-define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templates/properties', '../libs/camelion/camelion'],
-  function($, _, Backbone, getProperties, template, camelion){
+define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templates/properties', '../templates/color'],
+  function($, _, Backbone, getProperties, template, colorTemplate){
     return Backbone.View.extend({
       tagName: 'ul',
+
+      initialize: function(){
+        _.bindAll(this, 'render');
+        this.stage = this.model.stage;
+        this.stage.on('object:selected', this.render);
+        this.stage.on('selection:cleared', this.render);
+        this.stage.on('change:currentFrame', this.render);
+        this.stage.on('object:moving', this.render);
+        this.stage.on('object:scaling', this.render);
+        this.stage.on('object:rotating', this.render);
+      },
+
       template: function(active){
                   var properties = [
                     {name: 'top', property: 'top', value: Math.round(active.top), max: this.stage.height, min: 0, step:1},
@@ -25,21 +37,14 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
                   return template({properties: properties});
                 },
 
-      initialize: function(){
-        _.bindAll(this, 'render');
-        this.stage = this.model.stage;
-        this.stage.on('object:selected', this.render);
-        this.stage.on('selection:cleared', this.render);
-        this.stage.on('change:currentFrame', this.render);
-        this.stage.on('object:moving', this.render);
-        this.stage.on('object:scaling', this.render);
-        this.stage.on('object:rotating', this.render);
+      colorTemplate: function(active){
+        return colorTemplate({ name:'color', property:'fill', value: active.fill });
       },
 
       render: function(){
         var active = this.stage.getActiveObject();
         if(active !== undefined && active !== null){
-          this.$el.html([this.template(active), '<li><input type="color" data-property="fill" value="' + active.fill + '"/></li>']);
+          this.$el.html([this.template(active), this.colorTemplate(active)]);
         }
         return this.$el;
       },
