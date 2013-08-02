@@ -1,5 +1,5 @@
-define(['../kanvas/getProperties'],
-  function(getProperties){
+define(
+  function(){
   return Backbone.Model.extend({
     initialize: function(){
       // instantiate a new canvas using fabric http://fabricjs.com/
@@ -83,34 +83,3 @@ define(['../kanvas/getProperties'],
     }
   });
 });
-
-// var canvas = new fabric.Canvas('c');
-
-// var startPoints = [
-//   {x: 0, y: 42},
-//   {x: 155, y: 0},
-//   {x: 155, y: 243},
-//   {x: 0, y: 256}
-// ];
-
-// var polygon = new fabric.Polygon({
-//   points: startPoints,
-//   left: 100,
-//   top: 100,
-//   fill: 'purple',
-//   selectable: false
-// });
-
-
-// var endPoints = [
-//   {x: 185, y: 0},
-//   {x: 250, y: 100},
-//   {x: 385, y: 170},
-//   {x: 0, y: 245}
-// ];
-
-// var clonedStartPoints = startPoints.map(function(o){
-//   return fabric.util.object.clone(o);
-// });
-
-// canvas.add(polygon);
