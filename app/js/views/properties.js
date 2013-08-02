@@ -3,13 +3,20 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
     return Backbone.View.extend({
       tagName: 'ul',
       template: function(active){
-                  return template({properties: [
+                  var properties = [
                     {name: 'top', value: Math.round(active.top)},
                     {name: 'left', value: Math.round(active.left)},
-                    {name: 'height', value: Math.round(active.scaleY * active.height)},
-                    {name: 'width', value: Math.round(active.scaleX * active.width)},
                     {name: 'angle', value: Math.round(active.angle)}
-                  ]});
+                  ];
+                  switch(active.get('type')){
+                    case 'Rect' || 'Triangle':
+                      properties.push({name: 'height', value: Math.round(active.scaleY * active.height)},
+                                      {name: 'width', value: Math.round(active.scaleX * active.width)});
+                      break;
+                    case 'Circle':
+                      properties.push({name: 'radius', value: Math.round(active.radius)});
+                  }
+                  return template({properties: properties});
                 },
 
       initialize: function(){
@@ -27,34 +34,52 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
         var active = this.stage.getActiveObject();
         if(active !== undefined && active !== null){
           this.$el.html(this.template(active));
-        } else {
-          this.$el.html('<p>Nothing</p>');
         }
         return this.$el;
       },
 
       events: {
-        'keyup input[type="text"]'   : 'input',
-        'change input[type="range"]' : 'input'
+        'keyup input[type="text"]'   : 'inputHandler',
+        'change input[type="range"]' : 'inputHandler'
       },
 
-      input: function(e){
-        var active = this.stage.getActiveObject();
+      inputHandler: function(e){
+        // modifies the active klass properties from the properties panel
+        var activeKlass   = this.stage.getActiveObject(),
+            property = $(e.target).data('property'),
+            value    = $(e.target).val() * 1;
+
         if(e.keyCode === 13 || e.type === 'change'){
-          var property = $(e.target).data('property');
-          var val = $(e.target).val() * 1;
-          if(property === 'scaleX'){
-            val /= active.get('width');
-          } else if (property === 'scaleY'){
-            val /= active.get('height');
+          // transforms between height/width that users see and scale that fabric uses
+          if(property === 'scaleX' || property === 'scaleY'){
+            value /= activeKlass.get(property);
           }
-          active.set(property,val);
-          active.setCoords();
+          // radius has to be handled differently to ensure the bounding box gets updated
+          if (property === 'radius'){
+            activeKlass.setRadius(value);
+          } else {
+           activeKlass.set(property,value);
+          }
+          activeKlass.setCoords();
           this.stage.renderAll();
-          this.stage.trigger('object:modified', {target: active});
+          // sets a new keyframe on the active klass containing the modifications
+          this.stage.trigger('object:modified', {target: activeKlass});
+        }
+
+        this.linkInputs(e, value);
+      },
+
+       linkInputs: function(e, value){
+        if(e.type === 'change'){
+          var prop = $(e.target).data('property');
+          $('[data-property="' + prop + '"]').val(value);
+        }
+
+        if(e.keyCode === 13){
+          var prop2 = $(e.target).data('property');
+          $('[data-property="' + prop2 + '"]').val(value);
         }
       }
-
 
   });
 });

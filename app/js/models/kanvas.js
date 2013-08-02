@@ -35,6 +35,8 @@ define(['../kanvas/getProperties'],
       var klass = new fabric[type](this.defaultKlass(type));
       // create keyframes
       klass.keyframes ={0: {visible: false}, index:[0]};
+      klass.set('type', type);
+      this.stage.setActiveObject(klass);
       // uses farbic add method to insert modified klass objects onto the stage
       this.stage.add(klass);
     },
