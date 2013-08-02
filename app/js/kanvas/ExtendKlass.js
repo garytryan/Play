@@ -10,6 +10,10 @@ fabric.Object.prototype.anim = function(t){
       return result;
     })();
 
+    var interpolate = function(s, e, sT, d, cT){
+        return s + (((e - s) / d) * (cT - sT));
+    };
+
     var startKey = keyIndex[scan -1];
     var endKey = keyIndex[scan] || startKey;
     var duration = endKey - startKey;
@@ -19,22 +23,22 @@ fabric.Object.prototype.anim = function(t){
       if(property === 'visible'){
         options[property] = keyframes[startKey][property];
       } if(property === 'fill'){
-        //color diff per frame
-        var startColor = new fabric.Color(keyframes[endKey][property]);
-        var endColor = new fabric.Color(keyframes[startKey][property]);
+        var startColor = new fabric.Color(keyframes[startKey][property]);
+        var endColor = new fabric.Color(keyframes[endKey][property]);
+        if(startColor.toHex() !== endColor.toHex()){
         var mixedColor = [];
         for(var i = 0; i < endColor.getSource().length; i++){
-          var someNum = endColor.getSource()[i] + ((startColor.getSource()[i] - endColor.getSource()[i]) / duration)*t;
+          var someNum = startColor.getSource()[i] + ((endColor.getSource()[i] - startColor.getSource()[i]) / duration)*(t - keyIndex[scan-1]);
           mixedColor[i] = Math.round(someNum || 0);
         }
         var col = new fabric.Color('rgb('+ mixedColor[0] +',' + mixedColor[1] + ',' + mixedColor[2] + ')');
         console.log(col.toHex());
         options[property] = col.toHex();
-
+        }
       } else if (keyframes[startKey]['visible'] === true && keyframes[startKey][property] !== keyframes[endKey][property]) {
-        var motionPerFrame = (keyframes[endKey][property] - keyframes[startKey][property]) / duration;
-        options[property] = keyframes[startKey][property] + motionPerFrame*(t - keyIndex[scan-1]);
+        options[property] = interpolate(keyframes[startKey][property], keyframes[endKey][property], keyIndex[scan-1], duration, t);
       }
     }
     this.set(options).setCoords();
+
 };

@@ -43,7 +43,7 @@ define(['../kanvas/getProperties'],
 
     defaultKlass: function(type){
       // set different default values for newly created klasses depending on the klass type
-      var properties = {top: 80, left:80, fill:'black', opacity: 0.2 , visible: true};
+      var properties = {top: 80, left:80, fill:'black', opacity: 1 , visible: true};
       switch(type){
         case 'Rect' || 'Trinagle':
           properties['height'] = 80;
