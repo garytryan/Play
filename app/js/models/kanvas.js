@@ -52,6 +52,10 @@ define(['../kanvas/getProperties'],
         case 'Circle':
           properties['radius'] = 40;
           break;
+        case 'Star':
+          properties['numPoints'] = 5;
+          properties['innerRadius'] = 50;
+          properties['outerRadius'] = 100;
       }
       return properties;
     },
@@ -67,8 +71,41 @@ define(['../kanvas/getProperties'],
       keyframe['width']   = target.width;
       keyframe['visible'] = true;
       keyframe['fill']    = target.fill;
+      if(target.type === 'Circle'){
+        keyframe['radius'] = target.radius;
+      }
       return keyframe;
     }
-
   });
 });
+
+// var canvas = new fabric.Canvas('c');
+
+// var startPoints = [
+//   {x: 0, y: 42},
+//   {x: 155, y: 0},
+//   {x: 155, y: 243},
+//   {x: 0, y: 256}
+// ];
+
+// var polygon = new fabric.Polygon({
+//   points: startPoints,
+//   left: 100,
+//   top: 100,
+//   fill: 'purple',
+//   selectable: false
+// });
+
+
+// var endPoints = [
+//   {x: 185, y: 0},
+//   {x: 250, y: 100},
+//   {x: 385, y: 170},
+//   {x: 0, y: 245}
+// ];
+
+// var clonedStartPoints = startPoints.map(function(o){
+//   return fabric.util.object.clone(o);
+// });
+
+// canvas.add(polygon);

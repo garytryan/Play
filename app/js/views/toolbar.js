@@ -5,7 +5,8 @@ define(['jquery', 'underscore', 'backbone', '../templates/tool'],
     template: template({tools: [
       {name: 'Rectangle', type: 'Rect'},
       {name: 'Triangle',  type: 'Triangle'},
-      {name: 'Circle',    type: 'Circle'}
+      {name: 'Circle',    type: 'Circle'},
+      {name: 'Star',    type: 'Star'}
     ]}),
 
     initialize: function(){
