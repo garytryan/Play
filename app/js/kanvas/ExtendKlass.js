@@ -18,6 +18,17 @@ fabric.Object.prototype.anim = function(t){
     for(var property in keyframes[endKey]){
       if(property === 'visible'){
         options[property] = keyframes[startKey][property];
+      } if(property === 'fill'){
+        //color diff per frame
+        var startColor = new fabric.Color(keyframes[endKey][property]);
+        var endColor = new fabric.Color(keyframes[startKey][property]);
+        var mixedColor = [];
+        for(var i = 0; i < endColor.getSource().length; i++){
+          var someNum = startColor.getSource()[i] - ((endColor.getSource()[i] - startColor.getSource()[i]) / duration);
+          mixedColor[i] = Math.round(someNum);
+        }
+        options[property] = 'rgba('+ mixedColor[0] +',' + mixedColor[1] + ',' + mixedColor[2] + ')';
+
       } else if (keyframes[startKey]['visible'] === true && keyframes[startKey][property] !== keyframes[endKey][property]) {
         var motionPerFrame = (keyframes[endKey][property] - keyframes[startKey][property]) / duration;
         options[property] = keyframes[startKey][property] + motionPerFrame*(t - keyIndex[scan-1]);

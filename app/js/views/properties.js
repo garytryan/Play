@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templates/properties'],
-  function($, _, Backbone, getProperties, template){
+define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templates/properties', '../libs/camelion/camelion'],
+  function($, _, Backbone, getProperties, template, camelion){
     return Backbone.View.extend({
       tagName: 'ul',
       template: function(active){
@@ -33,21 +33,24 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
       render: function(){
         var active = this.stage.getActiveObject();
         if(active !== undefined && active !== null){
-          this.$el.html(this.template(active));
+          this.$el.html([this.template(active), '<li><input type="color" data-property="fill" /></li>']);
         }
         return this.$el;
       },
 
       events: {
         'keyup input[type="text"]'   : 'inputHandler',
-        'change input[type="range"]' : 'inputHandler'
+        'change input[type="range"]' : 'inputHandler',
+        'change input[type="color"]' : 'inputHandler'
       },
 
       inputHandler: function(e){
         // modifies the active klass properties from the properties panel
         var activeKlass   = this.stage.getActiveObject(),
-            property = $(e.target).data('property'),
-            value    = $(e.target).val() * 1;
+            property = $(e.target).data('property');
+
+        // return a string if the property is color other wise transform string into text
+        var value = property === 'fill'? $(e.target).val() : $(e.target).val() * 1;
 
         if(e.keyCode === 13 || e.type === 'change'){
           // transforms between height/width that users see and scale that fabric uses
@@ -57,8 +60,10 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
           // radius has to be handled differently to ensure the bounding box gets updated
           if (property === 'radius'){
             activeKlass.setRadius(value);
+          } else if(property === 'fill'){
+            activeKlass.setFill(value);
           } else {
-           activeKlass.set(property,value);
+            activeKlass.set(property,value);
           }
           activeKlass.setCoords();
           this.stage.renderAll();
@@ -67,6 +72,14 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
         }
 
         this.linkInputs(e, value);
+      },
+
+      colorHandler: function(e){
+        var activeKlass = this.stage.getActiveObject(),
+            value = e.target.value;
+            var rgb = camelion.hexToRgb(value);
+        activeKlass.setFill(value);
+        this.stage.renderAll();
       },
 
        linkInputs: function(e, value){

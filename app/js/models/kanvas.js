@@ -66,6 +66,7 @@ define(['../kanvas/getProperties'],
       keyframe['height']  = target.height;
       keyframe['width']   = target.width;
       keyframe['visible'] = true;
+      keyframe['fill']    = target.fill;
       return keyframe;
     }
 
