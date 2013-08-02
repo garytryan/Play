@@ -39,7 +39,7 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
       render: function(){
         var active = this.stage.getActiveObject();
         if(active !== undefined && active !== null){
-          this.$el.html([this.template(active), '<li><input type="color" data-property="fill" /></li>']);
+          this.$el.html([this.template(active), '<li><input type="color" data-property="fill" value="' + active.fill + '"/></li>']);
         }
         return this.$el;
       },
@@ -85,14 +85,6 @@ define(['jquery', 'underscore', 'backbone','../kanvas/getProperties', '../templa
         }
 
         this.linkInputs(e, value);
-      },
-
-      colorHandler: function(e){
-        var activeKlass = this.stage.getActiveObject(),
-            value = e.target.value;
-            var rgb = camelion.hexToRgb(value);
-        activeKlass.setFill(value);
-        this.stage.renderAll();
       },
 
        linkInputs: function(e, value){

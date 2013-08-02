@@ -39,7 +39,7 @@ fabric.Object.prototype.anim = function(t){
             mixedColor[i] = Math.round(interpolate(startColor.getSource()[i], endColor.getSource()[i], keyIndex[scan-1], duration, t));
           }
           var result = new fabric.Color('rgb('+ mixedColor[0] +',' + mixedColor[1] + ',' + mixedColor[2] + ')');
-          options[property] = result.toHex();
+          options[property] = '#' + result.toHex();
         }
       // Most other properties
       } else if (keyframes[startKey]['visible'] === true && keyframes[startKey][property] !== keyframes[endKey][property]) {
