@@ -4,10 +4,10 @@ fabric.Object.prototype.anim = function(t){
 
     var scan = (function(){
       var result = 0;
-      while(keyIndex[result] < t){
+      while(keyIndex[result] <= t){
         result++;
       }
-      t === 0 && result++;
+      //t === 0 && result++;
       return result;
     })();
 
