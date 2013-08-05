@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone'],
-  function($, _, Backbone){
+define(['jquery', 'underscore', 'backbone', '../templates/reel'],
+  function($, _, Backbone, template){
   return Backbone.View.extend({
     className: 'reel',
 
@@ -9,8 +9,12 @@ define(['jquery', 'underscore', 'backbone'],
       this.stage.on('timeline:modified', this.render);
     },
 
+    template: function(currentFrame){
+      return template({ currentFrame: currentFrame });
+    },
+
     render: function(){
-      return this.$el.html('<input type="range" id="range" max="6000" min="0" value="' + this.stage.meta('currentFrame') + '" step="10" />');
+      return this.$el.html(this.template(this.stage.meta('currentFrame')));
     },
 
     events: {
