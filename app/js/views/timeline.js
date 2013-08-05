@@ -34,7 +34,7 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
         klass[i].anim(currentFrame);
       }
       this.stage.renderAll();
-      // this.stage.trigger('object:modified');
+      this.stage.trigger('timeline:modified');
     }
   });
 });

@@ -51,5 +51,4 @@ fabric.Object.prototype.anim = function(t){
       }
     }
     this.set(options).setCoords();
-
 };

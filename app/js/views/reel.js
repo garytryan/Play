@@ -4,11 +4,13 @@ define(['jquery', 'underscore', 'backbone'],
     className: 'reel',
 
     initialize: function(){
+      _.bindAll(this, 'render');
       this.stage = this.model.stage;
+      this.stage.on('timeline:modified', this.render);
     },
 
     render: function(){
-      return this.$el.html('<input type="range" id="range" max="6000" min="0" value="0" step="10" />');
+      return this.$el.html('<input type="range" id="range" max="6000" min="0" value="' + this.stage.meta('currentFrame') + '" step="10" />');
     },
 
     events: {
@@ -23,7 +25,6 @@ define(['jquery', 'underscore', 'backbone'],
         klass[i].anim(currentFrame);
       }
       this.stage.renderAll();
-      // this.stage.trigger('modified');
     }
   });
 });
