@@ -3,7 +3,7 @@ define(['jquery', 'underscore', 'backbone'],
   return Backbone.Model.extend({
     initialize: function(){
       // instantiate a new canvas using fabric http://fabricjs.com/
-      this.stage = new fabric.Canvas('kanvas');
+      this.stage = new fabric.Canvas('kanvas', { backgroundColor: 'white' });
       // add meta storage to share the current frame
       this.stage._meta = { currentFrame: 0 };
       this.stage.meta = function(prop, value){

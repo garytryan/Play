@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', './toolbar', './reel', './properties', './timeline', '../models/kanvas'],
   function($, _, Backbone, toolbarView, reelView, propertiesView, timelineView, kanvasModel) {
   return Backbone.View.extend({
-    el: '#container',
+    el: '#controlPanel',
 
     initialize: function(){
       this.stage = new kanvasModel();

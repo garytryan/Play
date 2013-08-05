@@ -1,5 +1,7 @@
-define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
+define(['jquery', 'underscore', 'backbone', '../templates/timeline'], 
+  function($, _, Backbone, template){
   return Backbone.View.extend({
+    className: 'timeline',
 
     initialize: function(){
       this.stage = this.model.stage;
@@ -8,18 +10,22 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
       this.stage.on('object:modified', this.render);
     },
 
+    template: function(data){
+      return template(data);
+    },
+
     render: function(){
-      var klassi = this.stage.getObjects();
-      var template = '<h2>Timeline</h2>';
-      _.each(klassi, function(klass){
-        template += '<li>'+ klass.type +'</li>';
-        template += '<ul>';
-        _.each(klass.keyframes.index, function(timestamp){
-          template += '<li class="timestamp" data-frame="' + timestamp + '">' + timestamp + '</li>';
-        });
-        template += '</ul>';
-      });
-      return this.$el.html(template);
+      var data = {"klassi": this.stage.getObjects()};
+      // var template = '';
+      // _.each(klassi, function(klass){
+      //   template += '<li>'+ klass.type +'</li>';
+      //   template += '<ul>';
+      //   _.each(klass.keyframes.index, function(timestamp){
+      //     template += '<li class="timestamp" data-frame="' + timestamp + '">' + timestamp + '</li>';
+      //   });
+      //   template += '</ul>';
+      // });
+      return this.$el.html(this.template(data));
     },
 
     events: {

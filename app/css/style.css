@@ -1,1 +1,11 @@
-.reel input[type="range"]{ width: 800px; }
+html,body{height:auto}
+body{text-align:center;background-color:#e6e6e6}
+#container{width:100%;height:100%;text-align:left;margin-top:30px}
+.canvas-container{border:#c8c8c8 1px solid;margin:0 auto}
+.controlPanel{background-color:#3c3c3c;height:300px;position:fixed;bottom:0;width:100%}
+.toolbar{outline:#008000 1px dashed;height:30px}
+.toolbar li{display:block;outline:#ffa500 1px dashed;float:left;height:30px;width:30px}
+.reel{outline:#f00 1px dashed;height:25px;margin-right:240px}
+.reel input[type='range']{width:100%}
+.properties{outline:#00f 1px dashed;width:220px;height:250px;padding:10px;float:right;overflow-y:scroll}
+.timeline{outline:#ff0 1px dashed;height:245px;overflow-y:scroll}

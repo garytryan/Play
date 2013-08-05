@@ -35,13 +35,27 @@ module.exports = function(grunt) {
       }
     },
 
+    stylus: {
+      client: {
+        src: 'app/styl/style.styl',
+        dest: 'app/css/style.css',
+        compress: false
+      }
+    },
+
     watch: {
       client: {
-        files: ['**/*'],
+        files: ['app/**/*'],
         tasks: [],
         options: {
           livereload:LIVERLOAD_PORT
         }
+      },
+
+      css: {
+        files: 'app/styl/*.styl',
+        tasks: ['build'],
+        options: { livereload: true }
       }
     }
   });
@@ -49,8 +63,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-stylus');
 
-  grunt.registerTask('build', ['concat']);
-  grunt.registerTask('default', ['connect:client', 'watch:client']);
-
+  grunt.registerTask('build', ['stylus:client']);
+  grunt.registerTask('default', ['connect:client', 'watch']);
 };

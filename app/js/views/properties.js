@@ -2,6 +2,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/properties', '../templ
   function($, _, Backbone, template, colorTemplate){
     return Backbone.View.extend({
       tagName: 'ul',
+      className: 'properties',
 
       initialize: function(){
         _.bindAll(this, 'render');

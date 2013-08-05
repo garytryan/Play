@@ -1,7 +1,9 @@
 define(['jquery', 'underscore', 'backbone', '../templates/tool'],
   function($, _, Backbone, template){
   return Backbone.View.extend({
-    tagName: "ul",
+    tagName: 'ul',
+    className: 'toolbar',
+
     template: template({tools: [
       {name: 'Rectangle', type: 'Rect'},
       {name: 'Triangle',  type: 'Triangle'},
