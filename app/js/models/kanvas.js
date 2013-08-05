@@ -2,28 +2,30 @@ define(['jquery', 'underscore', 'backbone'],
   function($, _, Backbone){
   return Backbone.Model.extend({
     initialize: function(){
+      _.bindAll(this, 'addKeyframe', 'addKlass', 'meta');
       // instantiate a new canvas using fabric http://fabricjs.com/
       this.stage = new fabric.Canvas('kanvas', { backgroundColor: 'white' });
       // add meta storage to share the current frame
-      this.stage._meta = { currentFrame: 0 };
-      this.stage.meta = function(prop, value){
+      this._meta = { currentFrame: 0 };
+
+      // add new keyframes to a klass when it is added or modified
+      this.stage.on('object:modified', this.addKeyframe );
+      this.stage.on('object:added', this.addKeyframe );
+    },
+
+    meta : function(prop, value){
         if(value === undefined){
           return this._meta[prop];
         } else {
           this._meta[prop] = value;
           this.trigger('change:' + prop, value);
         }
-      };
-      // add new keyframes to a klass when it is added or modified
-      _.bindAll(this, 'addKeyframe', 'addKlass');
-      this.stage.on('object:modified', this.addKeyframe );
-      this.stage.on('object:added', this.addKeyframe );
     },
 
     addKeyframe: function(e){
       var klass        = e.target,
           keyframes    = klass.keyframes,
-          currentFrame = this.stage.meta('currentFrame');
+          currentFrame = this.meta('currentFrame');
       // add a new keyframe to the active klass
       keyframes[currentFrame] = this.makeKeyframe(klass);
       // update the keyframe index array

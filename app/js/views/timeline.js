@@ -16,15 +16,6 @@ define(['jquery', 'underscore', 'backbone', '../templates/timeline'],
 
     render: function(){
       var data = {"klassi": this.stage.getObjects()};
-      // var template = '';
-      // _.each(klassi, function(klass){
-      //   template += '<li>'+ klass.type +'</li>';
-      //   template += '<ul>';
-      //   _.each(klass.keyframes.index, function(timestamp){
-      //     template += '<li class="timestamp" data-frame="' + timestamp + '">' + timestamp + '</li>';
-      //   });
-      //   template += '</ul>';
-      // });
       return this.$el.html(this.template(data));
     },
 
@@ -34,7 +25,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/timeline'],
 
     changeFrame: function(e){
       var currentFrame = $(e.target).data('frame') * 1;
-      this.stage.meta('currentFrame', currentFrame);
+      this.model.meta('currentFrame', currentFrame);
       var klass = this.stage.getObjects();
       for(var i = 0; i < klass.length; i++){
         klass[i].anim(currentFrame);

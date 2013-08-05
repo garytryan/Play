@@ -3,7 +3,7 @@ define(['../libs/handlebars/handlebars'], function(handlebars){
    '{{#klassi}}' +
    '<li>{{type}}' +
      '<ul>' +
-       '{{#each keyframes.index}}<li>{{this}}</li>{{/each}}' +
+       '{{#each keyframes.index}}<li class="timestamp" data-frame="{{this}}">{{this}}</li>{{/each}}' +
      '</ul>' +
    '</li>' +
    '{{/klassi}}';

@@ -14,7 +14,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
     },
 
     render: function(){
-      return this.$el.html(this.template(this.stage.meta('currentFrame')));
+      return this.$el.html(this.template(this.model.meta('currentFrame')));
     },
 
     events: {
@@ -23,7 +23,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
 
     scrub: function(e){
       var currentFrame = e.currentTarget.value * 1;
-      this.stage.meta('currentFrame', currentFrame);
+      this.model.meta('currentFrame', currentFrame);
       var klass = this.stage.getObjects();
       for(var i = 0; i < klass.length; i++){
         klass[i].anim(currentFrame);
