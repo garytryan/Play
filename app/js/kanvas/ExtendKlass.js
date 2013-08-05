@@ -7,13 +7,17 @@ fabric.Object.prototype.anim = function(t){
       while(keyIndex[result] <= t){
         result++;
       }
-      //t === 0 && result++;
+      // t === 0 && result++;
       return result;
     })();
 
     var interpolate = function(s, e, sT, d, cT){
         // start value, end value, startTime, duration, currentTime
-        return s + (((e - s) / d) * (cT - sT));
+        if(s - e === 0){
+          return s;
+        } else {
+          return e - s === 0 || s + (((e - s) / d) * (cT - sT));
+        }
     };
 
     var startKey = keyIndex[scan -1];
@@ -42,8 +46,7 @@ fabric.Object.prototype.anim = function(t){
           var result = new fabric.Color('rgb('+ mixedColor[0] +',' + mixedColor[1] + ',' + mixedColor[2] + ')');
           options[property] = '#' + result.toHex();
         }
-      // Most other properties
-      } else if (keyframes[startKey]['visible'] === true && keyframes[startKey][property] !== keyframes[endKey][property]) {
+      } else if (keyframes[startKey]['visible'] === true) {
         options[property] = interpolate(keyframes[startKey][property], keyframes[endKey][property], keyIndex[scan-1], duration, t);
       }
     }
