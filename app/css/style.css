@@ -13,3 +13,7 @@ body{text-align:center;background-color:#e6e6e6}
 .timeline li ul{display:block;float:left;height:30px;background-color:rgba(0,0,0,0.25);position:absolute;left:30px;right:240px}
 .timeline li ul li{width:30px;position:absolute}
 .icon{height:30px;width:30px;display:block;float:left}
+.icon.Circle{background-image:none,url("../img/circle.svg");background-repeat:no-repeat}
+.icon.Rect{background-image:none,url("../img/rectangle.svg");background-repeat:no-repeat}
+.icon.Triangle{background-image:none,url("../img/triangle.svg");background-repeat:no-repeat}
+.icon.Star{background-image:none,url("../img/star.svg");background-repeat:no-repeat}
