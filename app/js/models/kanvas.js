@@ -84,6 +84,22 @@ define(['jquery', 'underscore', 'backbone'],
         keyframe['outerRadius'] = target.outerRadius;
       }
       return keyframe;
+    },
+
+    play: function(){
+      var cF = this.meta('currentFrame');
+      console.log(cF);
+      this.meta('currentFrame', ++cF);
+      var klass = this.stage.getObjects();
+      for(var i = 0; i < klass.length; i++){
+        klass[i].anim(cF);
+      }
+      this.stage.renderAll();
+      var self = this;
+      if(cF > 200){
+        return;
+      }
+      setTimeout(self.play.bind(self), 33);
     }
   });
 });

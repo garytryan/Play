@@ -2,7 +2,7 @@ define(['../libs/handlebars/handlebars'], function(handlebars){
   Handlebars.registerHelper('list', function(items){
     var out = '';
     for(var i = 0; i < items.length; i++){
-      out += '<li class="timestamp" style="margin-left:' + Math.floor(items[i] / 60) + '%" data-frame="' + items[i] + '"></li>';
+      out += '<li class="timestamp" style="margin-left:' + Math.floor(items[i] / 2) + '%" data-frame="' + items[i] + '"></li>';
     }
     return out;
   });

@@ -4,7 +4,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
     className: 'reel',
 
     initialize: function(){
-      _.bindAll(this, 'render');
+      _.bindAll(this, 'render', 'play');
       this.stage = this.model.stage;
       this.stage.on('timeline:modified', this.render);
     },
@@ -18,7 +18,8 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
     },
 
     events: {
-      'change #range' : 'scrub'
+      'change #range' : 'scrub',
+      'click  .playBtn'  : 'play'
     },
 
     scrub: function(e){
@@ -29,6 +30,10 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
         klass[i].anim(currentFrame);
       }
       this.stage.renderAll();
+    },
+
+    play: function(){
+      this.model.play();
     }
   });
 });
