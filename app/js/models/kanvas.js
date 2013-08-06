@@ -2,7 +2,7 @@ define(['jquery', 'underscore', 'backbone'],
   function($, _, Backbone){
   return Backbone.Model.extend({
     initialize: function(){
-      _.bindAll(this, 'addKeyframe', 'addKlass', 'meta');
+      _.bindAll(this, 'addKeyframe', 'addKlass', 'meta', 'togglePlay');
       // instantiate a new canvas using fabric http://fabricjs.com/
       this.stage = new fabric.Canvas('kanvas', { backgroundColor: 'white' });
       // add meta storage to share the current frame
@@ -92,6 +92,9 @@ define(['jquery', 'underscore', 'backbone'],
         this.meta('playState', 'paused');
       }
       if(currentPlayState === 'paused'){
+        if(this.meta('currentFrame') === 200){
+          this.meta('currentFrame', 0);
+        }
         this.meta('playState', 'playing');
         this.play();
       }
@@ -100,7 +103,7 @@ define(['jquery', 'underscore', 'backbone'],
     play: function(){
       var self = this;
       var currentFrame = this.meta('currentFrame');
-      if(currentFrame > 200){
+      if(currentFrame > 199){
         this.meta('playState', 'paused');
       }
       if(this.meta('playState') === 'paused'){
