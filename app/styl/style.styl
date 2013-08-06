@@ -1,5 +1,12 @@
+box-shadow()
+  -webkit-box-shadow: arguments
+  -moz-box-shadow: arguments
+  -o-box-shadow: arguments
+  box-shadow: arguments
+
 html, body
   height: auto
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
 body
   text-align: center
@@ -16,15 +23,20 @@ body
   margin: 0 auto
 
 .controlPanel
-  background-color: rgb(60,60,60)
+  background-color: rgb(50,50,50)
   height: 300px
   position: fixed
   bottom: 0
   width: 100%
+  box-shadow: 0px -10px 8px rgba(0,0,0,0.25)
 
 .toolbar
-  outline: green 1px dashed
   height: 30px
+  width: 100%;
+  border-bottom: solid 1px rgb(20,20,20)
+  box-shadow: inset 0px 1px 0px rgba(255,255,255,0.1)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(60,60,60)), color-stop(100%,rgb(45,45,45)));
+
 
 .toolbar li
   display: block
@@ -33,46 +45,79 @@ body
   width: 30px
 
 .reel
-  outline: red 1px dashed
+  box-shadow: inset 0px 1px 0px rgba(255,255,255,0.1)
   height: 25px
-  margin-right: 240px
+  margin-right: 241px
   margin-left: 30px
+  text-align: center
 
 .reel input[type='range']
-  width: 100%
+  width: 99%
 
 .properties
-  outline: blue 1px dashed
   width: 220px
   height: 250px
-  padding: 10px
+  padding: 15px 10px
   float: right
   overflow-y: scroll
+  background-color: rgb(45,45,45)
+  border-left: solid 1px rgb(20,20,20)
+  box-shadow: inset 1px 1px 0px rgba(255,255,255,0.1)
+
+.properties label
+  color: rgb(200,200,200)
+  text-transform: capitalize
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  letter-spacing: 1px;
+  font-size: 12px
+  margin-right: 5px
+
+.properties input[type="text"]
+  color: rgb(120,120,120)
+  background-color: transparent
+  border: none
+  font-size: 12px
+
+.properties input[type="color"]
+  margin-left: 5px
+
+.properties li
+  margin-top: 3px
+
+.properties input[type="range"]
+  width: 100%
 
 .timeline
-  outline: yellow 1px dashed
   height: 245px
   overflow-y: scroll
 
-.timeline li
+.timeline > li
   display: block
-  width:100%
+  width: 100%
   height: 30px
+
+.timeline > li:nth-child(odd){
+  background-color: rgb(55,55,55)
+}
 
 .timeline li ul
   display: block
   float: left
   height: 30px;
-  background-color: rgba(0,0,0,0.25)
   position: absolute
-  left: 30px
+  left: 40px
   right: 240px
 
-.timeline li ul li
-  width: 30px
+.timestamp
   position: absolute
-  // display: block
-  // float: left
+  display: block
+  width: 6px
+  height: 28px
+  left: -11px;
+  background-color: rgb(42,97,168)
+  border: 1px solid rgba(0,0,0,0.5)
+  box-shadow: inset 1px 1px 0px rgba(255,255,255,0.1), inset -1px -1px 0px rgba(0,0,0,0.4)
+
 
 .icon
   height: 30px

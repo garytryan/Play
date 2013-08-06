@@ -1,17 +1,23 @@
-html,body{height:auto}
+html,body{height:auto;font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif}
 body{text-align:center;background-color:#e6e6e6}
 #container{width:100%;height:100%;text-align:left;margin-top:30px}
 .canvas-container{border:#c8c8c8 1px solid;margin:0 auto}
-.controlPanel{background-color:#3c3c3c;height:300px;position:fixed;bottom:0;width:100%}
-.toolbar{outline:#008000 1px dashed;height:30px}
+.controlPanel{background-color:#323232;height:300px;position:fixed;bottom:0;width:100%;-webkit-box-shadow:0 -10px 8px rgba(0,0,0,0.25);-moz-box-shadow:0 -10px 8px rgba(0,0,0,0.25);-o-box-shadow:0 -10px 8px rgba(0,0,0,0.25);box-shadow:0 -10px 8px rgba(0,0,0,0.25)}
+.toolbar{height:30px;width:100%;border-bottom:solid 1px #141414;-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);-o-box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#3c3c3c),color-stop(100%,#2d2d2d))}
 .toolbar li{display:block;float:left;height:30px;width:30px}
-.reel{outline:#f00 1px dashed;height:25px;margin-right:240px;margin-left:30px}
-.reel input[type='range']{width:100%}
-.properties{outline:#00f 1px dashed;width:220px;height:250px;padding:10px;float:right;overflow-y:scroll}
-.timeline{outline:#ff0 1px dashed;height:245px;overflow-y:scroll}
-.timeline li{display:block;width:100%;height:30px}
-.timeline li ul{display:block;float:left;height:30px;background-color:rgba(0,0,0,0.25);position:absolute;left:30px;right:240px}
-.timeline li ul li{width:30px;position:absolute}
+.reel{-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);-o-box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);height:25px;margin-right:241px;margin-left:30px;text-align:center}
+.reel input[type='range']{width:99%}
+.properties{width:220px;height:250px;padding:15px 10px;float:right;overflow-y:scroll;background-color:#2d2d2d;border-left:solid 1px #141414;-webkit-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);-moz-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);-o-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1)}
+.properties label{color:#c8c8c8;text-transform:capitalize;font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;letter-spacing:1px;font-size:12px;margin-right:5px}
+.properties input[type="text"]{color:#787878;background-color:transparent;border:none;font-size:12px}
+.properties input[type="color"]{margin-left:5px}
+.properties li{margin-top:3px}
+.properties input[type="range"]{width:100%}
+.timeline{height:245px;overflow-y:scroll}
+.timeline > li{display:block;width:100%;height:30px}
+.timeline > li:nth-child(odd){background-color:#373737}
+.timeline li ul{display:block;float:left;height:30px;position:absolute;left:40px;right:240px}
+.timestamp{position:absolute;display:block;width:6px;height:28px;left:-11px;background-color:#2a61a8;border:1px solid rgba(0,0,0,0.5);-webkit-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1),inset -1px -1px 0 rgba(0,0,0,0.4);-moz-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1),inset -1px -1px 0 rgba(0,0,0,0.4);-o-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1),inset -1px -1px 0 rgba(0,0,0,0.4);box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1),inset -1px -1px 0 rgba(0,0,0,0.4)}
 .icon{height:30px;width:30px;display:block;float:left}
 .icon.Circle{background-image:none,url("../img/circle.svg");background-repeat:no-repeat}
 .icon.Rect{background-image:none,url("../img/rectangle.svg");background-repeat:no-repeat}

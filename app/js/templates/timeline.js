@@ -2,7 +2,7 @@ define(['../libs/handlebars/handlebars'], function(handlebars){
   Handlebars.registerHelper('list', function(items){
     var out = '';
     for(var i = 0; i < items.length; i++){
-      out += '<li class="timestamp" style="margin-left:' + items[i] / 60 + '%" data-frame="' + items[i] + '">' +items[i] + '</li>';
+      out += '<li class="timestamp" style="margin-left:' + Math.floor(items[i] / 60) + '%" data-frame="' + items[i] + '"></li>';
     }
     return out;
   });
@@ -10,7 +10,7 @@ define(['../libs/handlebars/handlebars'], function(handlebars){
   var source =
    '{{#klassi}}' +
    '<li>' +
-     '<span class="icon">{{type}}</span>' +
+     '<span class="icon {{type}}"></span>' +
      '<ul>' +
        '{{#list keyframes.index}}{{/list}}' +
      '</ul>' +
