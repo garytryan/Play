@@ -45,14 +45,21 @@ body
   width: 30px
 
 .reel
-  box-shadow: inset 0px 1px 0px rgba(255,255,255,0.1)
   height: 25px
+  position:relative
   margin-right: 241px
-  margin-left: 30px
   text-align: center
+  background-color: rgb(40,40,40)
+
+#reelWrapper
+  position:absolute
+  left:30px
+  right:1px
+  height:25px
 
 .reel input[type='range']
-  width: 99%
+  width:100%
+  margin-top: 5px
 
 .properties
   width: 220px
@@ -88,6 +95,7 @@ body
   width: 100%
 
 .timeline
+  box-shadow: inset 0px 1px 0px rgba(255,255,255,0.1)
   height: 245px
   overflow-y: scroll
 
@@ -96,7 +104,7 @@ body
   width: 100%
   height: 30px
 
-.timeline > li:nth-child(odd){
+.timeline > li:nth-child(even){
   background-color: rgb(55,55,55)
 }
 
@@ -141,6 +149,10 @@ body
   background-image: none, url('../img/star.svg')
   background-repeat: no-repeat
 
+.playBtn
+  background-image: none, url('../img/play_btn.svg')
+  background-repeat: no-repeat
+  height: 25px
 
 
 
