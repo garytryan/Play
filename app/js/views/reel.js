@@ -4,10 +4,11 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
     className: 'reel',
 
     initialize: function(){
-      _.bindAll(this, 'render', 'play');
+      _.bindAll(this, 'render', 'play', 'updateReel');
       this.stage = this.model.stage;
       this.stage.on('timeline:modified', this.render);
       this.model.on('meta:playState', this.render);
+      this.model.on('meta:currentFrame', this.updateReel);
     },
 
     template: function(currentFrame, playState){
@@ -36,6 +37,10 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
 
     play: function(){
       this.model.togglePlay();
+    },
+
+    updateReel: function(){
+      $('#range').val(this.model.meta('currentFrame'));
     }
   });
 });

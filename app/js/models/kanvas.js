@@ -108,7 +108,6 @@ define(['jquery', 'underscore', 'backbone'],
         this.meta('playState', 'paused');
       }
       if(this.meta('playState') === 'playing'){
-        console.log('playing', currentFrame);
         this.updateFrame(currentFrame);
         this.meta('currentFrame', ++currentFrame);
         setTimeout(this.play.bind(self), 33);
