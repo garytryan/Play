@@ -7,6 +7,8 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
       _.bindAll(this, 'render', 'play');
       this.stage = this.model.stage;
       this.stage.on('timeline:modified', this.render);
+      this.stage.on('play:playing', this.render);
+      this.stage.on('play:end', this.render);
     },
 
     template: function(currentFrame){
@@ -29,6 +31,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
       for(var i = 0; i < klass.length; i++){
         klass[i].anim(currentFrame);
       }
+      this.stage.trigger('scrub:scrubbing');
       this.stage.renderAll();
     },
 

@@ -18,7 +18,6 @@ define(['jquery', 'underscore', 'backbone'],
           return this._meta[prop];
         } else {
           this._meta[prop] = value;
-          this.trigger('change:' + prop, value);
         }
     },
 
@@ -88,15 +87,23 @@ define(['jquery', 'underscore', 'backbone'],
 
     play: function(){
       var cF = this.meta('currentFrame');
-      console.log(cF);
-      this.meta('currentFrame', ++cF);
       var klass = this.stage.getObjects();
-      for(var i = 0; i < klass.length; i++){
-        klass[i].anim(cF);
-      }
-      this.stage.renderAll();
       var self = this;
+      var updateFrame = function(cF){
+        for(var i = 0; i < klass.length; i++){
+          klass[i].anim(cF);
+        }
+        self.stage.renderAll();
+        self.stage.trigger('play:playing');
+      };
+      updateFrame(cF);
+
+      this.meta('currentFrame', ++cF);
+
       if(cF > 200){
+        // this.meta('currentFrame', 0);
+        // updateFrame(0);
+        this.stage.trigger('play:end');
         return;
       }
       setTimeout(self.play.bind(self), 33);
