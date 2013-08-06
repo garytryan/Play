@@ -35,8 +35,17 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
       this.stage.renderAll();
     },
 
-    play: function(){
-      this.model.play();
+    play: function(e){
+      var self = this;
+      $(e.currentTarget).toggle(
+        function(){
+          $(this).removeClass('playBtn');
+          // self.model.play();
+        },
+        function(){
+          $(this).removeClass('pauseBtn').addClass('playBtn');
+          // self.model.pause();
+        });
     }
   });
 });

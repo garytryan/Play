@@ -86,6 +86,7 @@ define(['jquery', 'underscore', 'backbone'],
     },
 
     play: function(){
+      console.log('playing');
       var cF = this.meta('currentFrame');
       var klass = this.stage.getObjects();
       var self = this;
@@ -99,14 +100,15 @@ define(['jquery', 'underscore', 'backbone'],
       updateFrame(cF);
 
       this.meta('currentFrame', ++cF);
-
       if(cF > 200){
-        // this.meta('currentFrame', 0);
-        // updateFrame(0);
         this.stage.trigger('play:end');
         return;
       }
       setTimeout(self.play.bind(self), 33);
+    },
+
+    pause: function(){
+      console.log('pausing');
     }
   });
 });
