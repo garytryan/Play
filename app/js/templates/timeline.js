@@ -1,9 +1,18 @@
 define(['../libs/handlebars/handlebars'], function(handlebars){
-  var source = 
+  Handlebars.registerHelper('list', function(items){
+    var out = '';
+    for(var i = 0; i < items.length; i++){
+      out += '<li class="timestamp" style="margin-left:' + items[i] / 60 + '%" data-frame="' + items[i] + '">' +items[i] + '</li>';
+    }
+    return out;
+  });
+
+  var source =
    '{{#klassi}}' +
-   '<li>{{type}}' +
+   '<li>' +
+     '<span class="icon">{{type}}</span>' +
      '<ul>' +
-       '{{#each keyframes.index}}<li class="timestamp" data-frame="{{this}}">{{this}}</li>{{/each}}' +
+       '{{#list keyframes.index}}{{/list}}' +
      '</ul>' +
    '</li>' +
    '{{/klassi}}';
@@ -12,3 +21,4 @@ define(['../libs/handlebars/handlebars'], function(handlebars){
     return template(context);
   };
 });
+

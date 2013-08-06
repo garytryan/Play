@@ -4,8 +4,12 @@ body{text-align:center;background-color:#e6e6e6}
 .canvas-container{border:#c8c8c8 1px solid;margin:0 auto}
 .controlPanel{background-color:#3c3c3c;height:300px;position:fixed;bottom:0;width:100%}
 .toolbar{outline:#008000 1px dashed;height:30px}
-.toolbar li{display:block;outline:#ffa500 1px dashed;float:left;height:30px;width:30px}
-.reel{outline:#f00 1px dashed;height:25px;margin-right:240px}
+.toolbar li{display:block;float:left;height:30px;width:30px}
+.reel{outline:#f00 1px dashed;height:25px;margin-right:240px;margin-left:30px}
 .reel input[type='range']{width:100%}
 .properties{outline:#00f 1px dashed;width:220px;height:250px;padding:10px;float:right;overflow-y:scroll}
 .timeline{outline:#ff0 1px dashed;height:245px;overflow-y:scroll}
+.timeline li{display:block;width:100%;height:30px}
+.timeline li ul{display:block;float:left;height:30px;background-color:rgba(0,0,0,0.25);position:absolute;left:30px;right:240px}
+.timeline li ul li{width:30px;position:absolute}
+.icon{height:30px;width:30px;display:block;float:left}
