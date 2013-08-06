@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'backbone'],
       // instantiate a new canvas using fabric http://fabricjs.com/
       this.stage = new fabric.Canvas('kanvas', { backgroundColor: 'white' });
       // add meta storage to share the current frame
-      this._meta = { currentFrame: 0 };
+      this._meta = { currentFrame: 0, playState: 'paused' };
 
       // add new keyframes to a klass when it is added or modified
       this.stage.on('object:modified', this.addKeyframe );
@@ -18,6 +18,7 @@ define(['jquery', 'underscore', 'backbone'],
           return this._meta[prop];
         } else {
           this._meta[prop] = value;
+          this.trigger('meta:' + prop);
         }
     },
 
@@ -85,30 +86,41 @@ define(['jquery', 'underscore', 'backbone'],
       return keyframe;
     },
 
-    play: function(){
-      console.log('playing');
-      var cF = this.meta('currentFrame');
-      var klass = this.stage.getObjects();
-      var self = this;
-      var updateFrame = function(cF){
-        for(var i = 0; i < klass.length; i++){
-          klass[i].anim(cF);
-        }
-        self.stage.renderAll();
-        self.stage.trigger('play:playing');
-      };
-      updateFrame(cF);
-
-      this.meta('currentFrame', ++cF);
-      if(cF > 200){
-        this.stage.trigger('play:end');
-        return;
+    togglePlay: function(){
+      var currentPlayState = this.meta('playState');
+      if(currentPlayState === 'playing'){
+        this.meta('playState', 'paused');
       }
-      setTimeout(self.play.bind(self), 33);
+      if(currentPlayState === 'paused'){
+        this.meta('playState', 'playing');
+        this.play();
+      }
     },
 
-    pause: function(){
-      console.log('pausing');
+    play: function(){
+      var self = this;
+      var currentFrame = this.meta('currentFrame');
+      if(currentFrame > 200){
+        this.meta('playState', 'paused');
+      }
+      if(this.meta('playState') === 'paused'){
+        console.log('pause');
+        this.meta('playState', 'paused');
+      }
+      if(this.meta('playState') === 'playing'){
+        console.log('playing', currentFrame);
+        this.updateFrame(currentFrame);
+        this.meta('currentFrame', ++currentFrame);
+        setTimeout(this.play.bind(self), 33);
+      }
+    },
+
+    updateFrame: function(currentFrame){
+      var klass = this.stage.getObjects();
+      for(var i = 0; i < klass.length; i++){
+        klass[i].anim(currentFrame);
+      }
+      this.stage.renderAll();
     }
   });
 });

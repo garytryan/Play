@@ -24,5 +24,5 @@ body{text-align:center;background-color:#e6e6e6}
 .icon.Rect{background-image:none,url("../img/rectangle.svg");background-repeat:no-repeat}
 .icon.Triangle{background-image:none,url("../img/triangle.svg");background-repeat:no-repeat}
 .icon.Star{background-image:none,url("../img/star.svg");background-repeat:no-repeat}
-.playBtn{background-image:none,url("../img/play_btn.svg");background-repeat:no-repeat;height:25px}
-.pauseBtn{background-color:#f00}
+.paused{background-image:none,url("../img/play_btn.svg");background-repeat:no-repeat;height:25px}
+.playing{background-color:#f00;height:25px}

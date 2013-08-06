@@ -7,16 +7,15 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
       _.bindAll(this, 'render', 'play');
       this.stage = this.model.stage;
       this.stage.on('timeline:modified', this.render);
-      this.stage.on('play:playing', this.render);
-      this.stage.on('play:end', this.render);
+      this.model.on('meta:playState', this.render);
     },
 
-    template: function(currentFrame){
-      return template({ currentFrame: currentFrame });
+    template: function(currentFrame, playState){
+      return template({ currentFrame: currentFrame, playState: playState });
     },
 
     render: function(){
-      return this.$el.html(this.template(this.model.meta('currentFrame')));
+      return this.$el.html(this.template(this.model.meta('currentFrame'), this.model.meta('playState')));
     },
 
     events: {
@@ -35,17 +34,8 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
       this.stage.renderAll();
     },
 
-    play: function(e){
-      var self = this;
-      $(e.currentTarget).toggle(
-        function(){
-          $(this).removeClass('playBtn');
-          // self.model.play();
-        },
-        function(){
-          $(this).removeClass('pauseBtn').addClass('playBtn');
-          // self.model.pause();
-        });
+    play: function(){
+      this.model.togglePlay();
     }
   });
 });
