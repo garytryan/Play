@@ -11,7 +11,7 @@ define(['jquery', 'underscore', 'backbone'],
       // add new keyframes to a klass when it is added or modified
       this.stage.on('object:modified', this.addKeyframe );
       this.stage.on('object:added', this.addKeyframe );
-      // this.removeKlass();
+      this.removeKlass();
     },
 
     meta : function(prop, value){

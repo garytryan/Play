@@ -8,7 +8,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/timeline'],
       _.bindAll(this, 'render');
       this.stage.on('object:added', this.render);
       this.stage.on('object:modified', this.render);
-      // this.stage.on('object:removed', this.render);
+      this.stage.on('object:removed', this.render);
     },
 
     template: function(data){
