@@ -2,7 +2,7 @@ define(['jquery', 'underscore', 'backbone'],
   function($, _, Backbone){
   return Backbone.Model.extend({
     initialize: function(){
-      _.bindAll(this, 'addKeyframe', 'addKlass', 'meta', 'togglePlay');
+      _.bindAll(this, 'addKeyframe', 'addKlass', 'meta', 'togglePlay', 'removeKlass');
       // instantiate a new canvas using fabric http://fabricjs.com/
       this.stage = new fabric.Canvas('kanvas', { backgroundColor: 'white' });
       // add meta storage to share the current frame
@@ -11,6 +11,7 @@ define(['jquery', 'underscore', 'backbone'],
       // add new keyframes to a klass when it is added or modified
       this.stage.on('object:modified', this.addKeyframe );
       this.stage.on('object:added', this.addKeyframe );
+      // this.removeKlass();
     },
 
     meta : function(prop, value){
@@ -123,6 +124,19 @@ define(['jquery', 'underscore', 'backbone'],
         klass[i].anim(currentFrame);
       }
       this.stage.renderAll();
+    },
+
+    removeKlass: function(){
+      var self = this;
+      document.onkeydown = function(e) {
+        evt = e || window.event;
+        // evt.preventDefault();
+        console.log(evt.keyCode);
+        if (evt.keyCode == 82) {
+          console.log('removing klass');
+          self.stage.getActiveObject().remove();
+        }
+      };
     }
   });
 });

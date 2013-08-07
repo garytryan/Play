@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', '../templates/timeline'], 
+define(['jquery', 'underscore', 'backbone', '../templates/timeline'],
   function($, _, Backbone, template){
   return Backbone.View.extend({
     className: 'timeline',
@@ -8,6 +8,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/timeline'],
       _.bindAll(this, 'render');
       this.stage.on('object:added', this.render);
       this.stage.on('object:modified', this.render);
+      // this.stage.on('object:removed', this.render);
     },
 
     template: function(data){
