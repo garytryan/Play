@@ -46,9 +46,9 @@ define(['jquery', 'underscore', 'backbone', '../templates/properties', '../templ
       render: function(){
         var active = this.stage.getActiveObject();
         if(active !== undefined && active !== null){
-          this.$el.html([this.template(active), this.colorTemplate(active)]);
+          return this.$el.html([this.template(active), this.colorTemplate(active)]);
         }
-        return this.$el;
+        return this.$el.html('<span class="placeholder">Properties</span>');
       },
 
       events: {

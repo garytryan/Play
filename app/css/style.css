@@ -9,7 +9,8 @@ body{text-align:center;background-color:#e6e6e6}
 #reelWrapper{position:absolute;left:30px;right:1px;height:25px}
 .reel input[type='range']{width:100%;margin-top:5px}
 .properties{width:220px;height:250px;padding:15px 10px;float:right;overflow-y:scroll;background-color:#2d2d2d;border-left:solid 1px #141414;-webkit-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);-moz-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);-o-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1)}
-.properties label{color:#c8c8c8;text-transform:capitalize;font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;letter-spacing:1px;font-size:12px;margin-right:5px}
+.properties label,.placeholder{color:#c8c8c8;text-transform:capitalize;font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;letter-spacing:1px;font-size:12px;margin-right:5px}
+.properties .placeholder{color:#1e1e1e;text-shadow:0 1px 1px rgba(255,255,255,0.15);font-size:16px;font-weight:bold;text-align:center;margin-top:50%;display:block}
 .properties input[type="text"]{color:#787878;background-color:transparent;border:none;font-size:12px}
 .properties input[type="color"]{margin-left:5px}
 .properties li{margin-top:3px}
