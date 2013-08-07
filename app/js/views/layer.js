@@ -1,14 +1,11 @@
-define(['jquery', 'underscore', 'backbone', '../templates/timeline', './layer'],
-  function($, _, Backbone, template, layerView){
+define(['jquery', 'underscore', 'backbone', '../templates/timeline'],
+  function($, _, Backbone, template){
   return Backbone.View.extend({
-    className: 'timeline',
+    className: 'layer',
 
     initialize: function(){
-      this.stage = this.model.stage;
-      _.bindAll(this, 'render');
-      this.stage.on('object:added', this.render);
-      this.stage.on('object:modified', this.render);
-      this.stage.on('object:removed', this.render);
+      _.bindAll(this, 'render', 'makeActive');
+      this.stage = this.options.stage;
     },
 
     template: function(data){
@@ -16,13 +13,11 @@ define(['jquery', 'underscore', 'backbone', '../templates/timeline', './layer'],
     },
 
     render: function(){
-      var klassi = this.stage.getObjects();
-      return this.$el.html(_.map(klassi, function(klass){
-        return new layerView({ model: klass, stage: this.stage}).render();
-      }, this));
+      return this.$el.html('<ul>A thing<ul>');
     },
 
     events: {
+      'click' : 'makeActive',
       'click .timestamp' : 'changeFrame'
     },
 
@@ -35,6 +30,10 @@ define(['jquery', 'underscore', 'backbone', '../templates/timeline', './layer'],
       }
       this.stage.renderAll();
       this.stage.trigger('timeline:modified');
+    },
+
+    makeActive: function(){
+      this.stage.setActiveObject(this.model);
     }
   });
 });
