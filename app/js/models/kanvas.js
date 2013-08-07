@@ -11,6 +11,7 @@ define(['jquery', 'underscore', 'backbone'],
       // add new keyframes to a klass when it is added or modified
       this.stage.on('object:modified', this.addKeyframe );
       this.stage.on('object:added', this.addKeyframe );
+      this.on('meta:currentFrame', this.updateFrame);
       this.removeKlass();
     },
 
@@ -108,17 +109,17 @@ define(['jquery', 'underscore', 'backbone'],
         this.meta('playState', 'paused');
       }
       if(this.meta('playState') === 'paused'){
-        console.log('pause');
         this.meta('playState', 'paused');
       }
       if(this.meta('playState') === 'playing'){
-        this.updateFrame(currentFrame);
+        this.updateFrame();
         this.meta('currentFrame', ++currentFrame);
         setTimeout(this.play.bind(self), 33);
       }
     },
 
-    updateFrame: function(currentFrame){
+    updateFrame: function(){
+      var currentFrame = this.meta('currentFrame');
       var klass = this.stage.getObjects();
       for(var i = 0; i < klass.length; i++){
         klass[i].anim(currentFrame);

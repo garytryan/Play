@@ -27,11 +27,6 @@ define(['jquery', 'underscore', 'backbone', '../templates/reel'],
     scrub: function(e){
       var currentFrame = e.currentTarget.value * 1;
       this.model.meta('currentFrame', currentFrame);
-      var klass = this.stage.getObjects();
-      for(var i = 0; i < klass.length; i++){
-        klass[i].anim(currentFrame);
-      }
-      this.stage.trigger('scrub:scrubbing');
       this.stage.renderAll();
     },
 

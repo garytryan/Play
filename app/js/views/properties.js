@@ -9,7 +9,6 @@ define(['jquery', 'underscore', 'backbone', '../templates/properties', '../templ
         this.stage = this.model.stage;
         this.stage.on('object:selected', this.render);
         this.stage.on('selection:cleared', this.render);
-        this.stage.on('scrub:scrubbing', this.render);
         this.stage.on('play:end', this.render);
         this.stage.on('object:moving', this.render);
         this.stage.on('object:scaling', this.render);
