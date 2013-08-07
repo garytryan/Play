@@ -18,7 +18,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/timeline', './layer'],
     render: function(){
       var klassi = this.stage.getObjects();
       return this.$el.html(_.map(klassi, function(klass){
-        return new layerView({ model: klass, stage: this.stage}).render();
+        return new layerView({ model: klass, kanvas: this.model}).render();
       }, this));
     }
   });

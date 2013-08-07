@@ -7,6 +7,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/properties', '../templ
       initialize: function(){
         _.bindAll(this, 'render');
         this.stage = this.model.stage;
+        this.model.on('meta:currentFrame', this.render);
         this.stage.on('object:selected', this.render);
         this.stage.on('selection:cleared', this.render);
         this.stage.on('play:end', this.render);
