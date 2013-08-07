@@ -1,7 +1,8 @@
-define(['jquery', 'underscore', 'backbone', '../templates/timeline'],
+define(['jquery', 'underscore', 'backbone', '../templates/layer'],
   function($, _, Backbone, template){
   return Backbone.View.extend({
     className: 'layer',
+    tagName: 'li',
 
     initialize: function(){
       _.bindAll(this, 'render', 'makeActive');
@@ -13,7 +14,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/timeline'],
     },
 
     render: function(){
-      return this.$el.html('<ul>A thing<ul>');
+      return this.$el.html(template({ klassi: this.model }));
     },
 
     events: {
@@ -23,13 +24,14 @@ define(['jquery', 'underscore', 'backbone', '../templates/timeline'],
 
     changeFrame: function(e){
       var currentFrame = $(e.target).data('frame') * 1;
-      this.model.meta('currentFrame', currentFrame);
+      this.stage.meta('currentFrame', currentFrame);
       var klass = this.stage.getObjects();
       for(var i = 0; i < klass.length; i++){
         klass[i].anim(currentFrame);
       }
       this.stage.renderAll();
       this.stage.trigger('timeline:modified');
+      this.makeActive();
     },
 
     makeActive: function(){

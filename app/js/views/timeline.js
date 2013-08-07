@@ -20,21 +20,6 @@ define(['jquery', 'underscore', 'backbone', '../templates/timeline', './layer'],
       return this.$el.html(_.map(klassi, function(klass){
         return new layerView({ model: klass, stage: this.stage}).render();
       }, this));
-    },
-
-    events: {
-      'click .timestamp' : 'changeFrame'
-    },
-
-    changeFrame: function(e){
-      var currentFrame = $(e.target).data('frame') * 1;
-      this.model.meta('currentFrame', currentFrame);
-      var klass = this.stage.getObjects();
-      for(var i = 0; i < klass.length; i++){
-        klass[i].anim(currentFrame);
-      }
-      this.stage.renderAll();
-      this.stage.trigger('timeline:modified');
     }
   });
 });
