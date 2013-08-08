@@ -30,6 +30,7 @@ var fabric=fabric||{version:"1.2.5"};typeof exports!="undefined"&&(exports.fabri
          */
         type: 'star',
 
+
         /**
          * Constructor
          * @method initialize
@@ -55,7 +56,6 @@ var fabric=fabric||{version:"1.2.5"};typeof exports!="undefined"&&(exports.fabri
             this.set( 'width', diameter ).set( 'height', diameter );
 
             this._setPoints();
-
         },
 
         /**
