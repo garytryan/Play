@@ -25,18 +25,8 @@ module.exports = function(grunt) {
       dist: {
         expand: true,
         cwd: 'app',
-        src:['js/**/*.js'],
+        src:['js/**/*.js', '!js/boilerplate.js'],
         dest: '<%= distFolder %>/'
-      }
-    },
-
-    connect: {
-      client: {
-        options: {
-          port: 9000,
-          base: 'app',
-          middleware: livereloadMiddleware
-        }
       }
     },
 
@@ -50,6 +40,26 @@ module.exports = function(grunt) {
         src: 'app/styl/style.styl',
         dest: 'app/css/style.css',
         compress: false
+      }
+    },
+
+    copy: {
+      dist: {
+        files: [
+          { expand: true, flatten:true, src: 'app/index.html', dest: '<%= distFolder %>' },
+          { expand: true, flatten:true, src: 'app/img/*', dest: '<%= distFolder %>/img/' },
+          { expand: true, flatten:true, src: 'app/css/meyers_reset.css', dest: '<%= distFolder %>/css/' }
+        ]
+      }
+    },
+
+    connect: {
+      client: {
+        options: {
+          port: 9000,
+          base: 'app',
+          middleware: livereloadMiddleware
+        }
       }
     },
 
@@ -75,8 +85,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('build', ['clean','uglify','stylus:dist']);
+  grunt.registerTask('build', ['clean:dist','uglify:dist','stylus:dist', 'copy:dist']);
   grunt.registerTask('preview', ['stylus:client']);
   grunt.registerTask('default', ['connect:client', 'watch']);
 };
