@@ -20,6 +20,7 @@
     "grunt-contrib-connect": "~0.3.0",
     "express": "~3.3.4",
     "stylus": "~0.36.0",
-    "grunt-contrib-stylus": "~0.7.0"
+    "grunt-contrib-stylus": "~0.7.0",
+    "grunt-contrib-uglify": "~0.2.2"
   }
 }

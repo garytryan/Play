@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     distFolder: 'dist',
     pkg: grunt.file.readJSON('package.json'),
 
-    concat: {
+    uglify: {
       options: {
         separator: ';'
       },
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-stylus');
