@@ -42,7 +42,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/properties', '../templ
 
         // return a string if the property is color other wise transform string into text
         var value = property === 'fill'? $(e.target).val() : $(e.target).val() * 1;
-        this.linkInputs(e, value);
+        // this.linkInputs(e, value);
 
         if(e.keyCode === 13 || e.type === 'change'){
           // transforms between height/width that users see and scale that fabric uses
@@ -85,7 +85,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/properties', '../templ
 
       makeControlList: function(klass, stage){
         var c = {
-          fill:        {controls: [{ name: 'left',        label: 'color',        type: 'color', value: klass.get('fill') }]},
+          fill:        {controls: [{ name: 'fill',        label: 'color',        type: 'color', value: klass.get('fill') }]},
           top:         {controls: [{ name: 'top',         label: 'top',          type: 'text',  value: Math.round(klass.get('top')) },                          { name: 'top',         type: 'range', value: Math.round(klass.get('top')),                                      attrs:[{ type: 'min', value: 0 }, {type: 'max', value: stage.height }, { type: 'step', value: 1}] }]},
           left:        {controls: [{ name: 'left',        label: 'left',         type: 'text',  value: Math.round(klass.get('left')) },                         { name: 'left',        type: 'range', value: Math.round(klass.get('top')),                                      attrs:[{ type: 'min', value: 0 }, {type: 'max', value: stage.width }, { type: 'step', value: 1}] }]},
           width:       {controls: [{ name: 'height',      label: 'width',        type: 'text',  value: Math.round(klass.get('scaleX') * klass.get('height')) }, { name: 'height',      type: 'range', value: Math.round(klass.get('scaleX') * klass.get('height')),             attrs:[{ type: 'min', value: 0 }, {type: 'max', value: stage.width }, { type: 'step', value: 1}] }]},
