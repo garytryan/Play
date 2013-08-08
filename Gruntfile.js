@@ -16,12 +16,11 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     uglify: {
-      options: {
-        separator: ';'
-      },
       dist: {
-        src:['app/js/*.js'],
-        dest: '<%= distFolder %>/main.js'
+        expand: true,
+        cwd: 'app',
+        src:['js/**/*.js'],
+        dest: '<%= distFolder %>/'
       }
     },
 
@@ -40,6 +39,11 @@ module.exports = function(grunt) {
         src: 'app/styl/style.styl',
         dest: 'app/css/style.css',
         compress: false
+      },
+      dist: {
+        src: 'app/styl/style.styl',
+        dest: 'app/css/style.css',
+        compress: false
       }
     },
 
@@ -54,7 +58,7 @@ module.exports = function(grunt) {
 
       css: {
         files: 'app/styl/*.styl',
-        tasks: ['build'],
+        tasks: ['preview'],
         options: { livereload: true }
       }
     }
@@ -65,6 +69,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-stylus');
 
-  grunt.registerTask('build', ['stylus:client']);
+  grunt.registerTask('build', ['uglify','stylus:dist']);
+  grunt.registerTask('preview', ['stylus:client']);
   grunt.registerTask('default', ['connect:client', 'watch']);
 };
