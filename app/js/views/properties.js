@@ -43,7 +43,6 @@ define(['jquery', 'underscore', 'backbone', '../templates/properties', '../templ
         // return a string if the property is color other wise transform string into text
         var value = property === 'fill'? $(e.target).val() : $(e.target).val() * 1;
         this.linkInputs(e, value);
-
         if(e.keyCode === 13 || e.type === 'change'){
           // transforms between height/width that users see and scale that fabric uses
           if(property === 'scaleX' || property === 'scaleY'){
@@ -78,7 +77,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/properties', '../templ
         }
 
         if(e.keyCode === 13){
-          var prop2 = $(e.target).data('property');
+          var prop2 = $(e.target).attr('name');
           $('[name="' + prop2 + '"]').val(value);
         }
       },
@@ -90,7 +89,7 @@ define(['jquery', 'underscore', 'backbone', '../templates/properties', '../templ
           left:        {controls: [{ name: 'left',        label: 'left',         type: 'text',  value: Math.round(klass.get('left')) },                         { name: 'left',        type: 'range', value: Math.round(klass.get('top')),                          attrs:[{ type: 'min', value: 0 }, {type: 'max', value: stage.width }, { type: 'step', value: 1}] }]},
           width:       {controls: [{ name: 'height',      label: 'width',        type: 'text',  value: Math.round(klass.get('scaleX') * klass.get('height')) }, { name: 'height',      type: 'range', value: Math.round(klass.get('scaleX') * klass.get('height')), attrs:[{ type: 'min', value: 0 }, {type: 'max', value: stage.width }, { type: 'step', value: 1}] }]},
           height:      {controls: [{ name: 'width',       label: 'height',       type: 'text',  value: Math.round(klass.get('scaleY') * klass.get('width')) },  { name: 'width',       type: 'range', value: Math.round(klass.get('scaleY') * klass.get('width')),  attrs:[{ type: 'min', value: 0 }, {type: 'max', value: stage.width }, { type: 'step', value: 1}] }]},
-          points:      {controls: [{ name: 'points',      label: 'points',       type: 'text',  value: klass.get('numPoints') },                                { name: 'points',      type: 'range', value: '0',                                                   attrs:[{ type: 'min', value: 0 }, {type: 'max', value: 12 }, { type: 'step', value: 1}] }]},
+          points:      {controls: [{ name: 'numPoints',      label: 'points',       type: 'text',  value: klass.get('numPoints') },                             { name: 'numPoints',   type: 'range', value: '0',                                                   attrs:[{ type: 'min', value: 0 }, {type: 'max', value: 12 }, { type: 'step', value: 1}] }]},
           innerRadius: {controls: [{ name: 'innerRadius', label: 'inner radius', type: 'text',  value: Math.round(klass.get('innerRadius')) },                  { name: 'innerRadius', type: 'range', value: Math.round(klass.get('innerRadius')),                  attrs:[{ type: 'min', value: 0 }, {type: 'max', value: stage.width }, { type: 'step', value: 1}] }]},
           outerRadius: {controls: [{ name: 'outerRadius', label: 'outer radius', type: 'text',  value: Math.round(klass.get('outerRadius')) },                  { name: 'outerRadius', type: 'range', value: Math.round(klass.get('innerRadius')),                  attrs:[{ type: 'min', value: 0 }, {type: 'max', value: stage.width }, { type: 'step', value: 1}] }]},
           radius:      {controls: [{ name: 'radius',      label: 'radius',       type: 'text',  value: Math.round(klass.get('radius')) },                       { name: 'radius',      type: 'range', value: Math.round(klass.get('radius')),                       attrs:[{ type: 'min', value: 0 }, {type: 'max', value: stage.width }] }]},
