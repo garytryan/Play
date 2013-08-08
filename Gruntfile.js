@@ -15,6 +15,12 @@ module.exports = function(grunt) {
     distFolder: 'dist',
     pkg: grunt.file.readJSON('package.json'),
 
+    clean: {
+      dist: {
+        src: ['<%= distFolder %>']
+      }
+    },
+
     uglify: {
       dist: {
         expand: true,
@@ -68,8 +74,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('build', ['uglify','stylus:dist']);
+  grunt.registerTask('build', ['clean','uglify','stylus:dist']);
   grunt.registerTask('preview', ['stylus:client']);
   grunt.registerTask('default', ['connect:client', 'watch']);
 };
