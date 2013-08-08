@@ -60,6 +60,13 @@ module.exports = function(grunt) {
           base: 'app',
           middleware: livereloadMiddleware
         }
+      },
+      preview: {
+        options: {
+          port: 9000,
+          base: 'dist',
+          keepalive: true
+        }
       }
     },
 
@@ -74,7 +81,7 @@ module.exports = function(grunt) {
 
       css: {
         files: 'app/styl/*.styl',
-        tasks: ['preview'],
+        tasks: ['css'],
         options: { livereload: true }
       }
     }
@@ -87,7 +94,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('build', ['clean:dist','uglify:dist','stylus:dist', 'copy:dist']);
-  grunt.registerTask('preview', ['stylus:client']);
+  grunt.registerTask('build',   ['clean:dist','uglify:dist','stylus:dist', 'copy:dist']);
+  grunt.registerTask('preview', ['connect:preview']);
+  grunt.registerTask('css',     ['stylus:client']);
   grunt.registerTask('default', ['connect:client', 'watch']);
 };
