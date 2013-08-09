@@ -102,5 +102,13 @@ describe('Extend Klass', function(){
     });
   });
 
-
+  describe('Color', function(){
+    it('should animate tween fill color', function(){
+      circle.set({ fill: 'rgb(100,100,100)' });
+      circle.keyframes = { 0: { fill: 'rgb(100,100,100)', visible: true }, 10: { fill: 'rgb(200,200,200)', visible: true }, index: [0,10] };
+      expect(new fabric.Color(circle.get('fill')).toRgb()).to.equal('rgb(100,100,100)');
+      circle.anim(5);
+      expect(new fabric.Color(circle.get('fill')).toRgb()).to.equal('rgb(150,150,150)');
+    });
+  });
 });
