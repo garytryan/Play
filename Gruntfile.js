@@ -38,7 +38,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: 'app/styl/style.styl',
-        dest: 'app/css/style.css',
+        dest: '<%= distFolder %>/css/style.css',
         compress: false
       }
     },
