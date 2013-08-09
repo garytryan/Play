@@ -10,8 +10,43 @@ describe('Extend Klass', function(){
     star   = new fabric.Star();
   });
 
-  it('fabric klass should have an anim method', function(){
+  it('should have an anim method', function(){
     expect(rect).to.have.property('anim');
+  });
+
+  it('should begin animation on the first second of each keyframe', function(){
+    rect.keyframes = { 0: { top: 0, visible: true }, 10: { top: 10, visible: true }, index: [0,10] };
+    rect.set({ top: 0 });
+    expect(rect.get('top')).to.equal(0);
+    rect.anim(10);
+    expect(rect.get('top')).to.equal(10);
+  });
+
+  it('should be linear animation', function(){
+    rect.keyframes = { 0: { top: 0, visible: true }, 10: { top: 10, visible: true }, index: [0,10] };
+    rect.set({ top: 0 });
+    expect(rect.get('top')).to.equal(0);
+
+    for(var i = 0; i < 11; i++){
+      rect.anim(i);
+      expect(rect.get('top')).to.equal(i);
+    }
+  });
+
+  it('should be stay static when time is greater then the last keyframe', function(){
+    rect.keyframes = { 0: { top: 0, visible: true }, 10: { top: 10, visible: true }, index: [0,10] };
+    rect.set({ top: 0 });
+    expect(rect.get('top')).to.equal(0);
+    rect.anim(11);
+    expect(rect.get('top')).to.equal(10);
+  });
+
+  it('should be stay static when object is not visible', function(){
+    rect.keyframes = { 0: { top: 0, visible: false }, 10: { top: 10, visible: true }, index: [0,10] };
+    rect.set({ top: 0 });
+    expect(rect.get('top')).to.equal(0);
+    rect.anim(5);
+    expect(rect.get('top')).to.equal(0);
   });
 
   describe('Translate', function(){
@@ -110,6 +145,18 @@ describe('Extend Klass', function(){
       expect(new fabric.Color(circle.get('fill')).toRgb()).to.equal('rgb(100,100,100)');
       circle.anim(5);
       expect(new fabric.Color(circle.get('fill')).toRgb()).to.equal('rgb(150,150,150)');
+    });
+  });
+
+  describe('Visible', function(){
+    it('should toggle visibility on', function(){
+      rect.keyframes = { 0: { top: 0, visible: false }, 10: { top: 10, visible: true }, index: [0,10] };
+      rect.set({ visible: false });
+      expect(rect.get('visible')).to.equal(false);
+      rect.anim(9);
+      expect(rect.get('visible')).to.equal(false);
+      rect.anim(10);
+      expect(rect.get('visible')).to.equal(true);
     });
   });
 
