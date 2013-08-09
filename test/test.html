@@ -8,14 +8,21 @@
     <div id="mocha"></div>
       <script src="../node_modules/chai/chai.js"></script>
       <script src="../node_modules/mocha/mocha.js"></script>
+
       <script>
         expect = chai.expect;
         mocha.setup('bdd');
       </script>
-      <script src="test.js"></script>
+
+      <script src="../app/js/libs/fabric/fabric.js"></script>
+      <script src="../app/js/kanvas/ExtendKlass.js"></script>
+      <script src="test.extendklass.js"></script>
+
       <script>
-        mocha.checkLeaks();
-        mocha.run();
+        onload = function(){
+          mocha.checkLeaks();
+          mocha.run();
+        }
       </script>
   </body>
 </html>
