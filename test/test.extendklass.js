@@ -3,9 +3,10 @@ if(typeof require !== 'undefined'){
 }
 
 describe('Extend Klass', function(){
-  var rect;
+  var rect, circle;
   beforeEach(function(){
     rect = new fabric.Rect();
+    circle = new fabric.Circle();
   });
 
   it('fabric klass should have an anim method', function(){
@@ -82,4 +83,24 @@ describe('Extend Klass', function(){
       expect(rect.get('width')).to.equal(150);
     });
   });
+
+  describe('Radius', function(){
+    it('should animate increase in radius', function(){
+      circle.set({ radius: 10 });
+      circle.keyframes = { 0: { radius: 10, visible: true }, 10: { radius: 20, visible: true }, index: [0,10] };
+      expect(circle.get('radius')).to.equal(10);
+      circle.anim(5);
+      expect(circle.get('radius')).to.equal(15);
+    });
+
+    it('should animate decrease in radius', function(){
+      circle.set({ radius: 20 });
+      circle.keyframes = {0: { radius: 20, visible: true}, 10: {radius: 10, visible: true}, index: [0,10] };
+      expect(circle.get('radius')).to.equal(20);
+      circle.anim(5);
+      expect(circle.get('radius')).to.equal(15);
+    });
+  });
+
+
 });
