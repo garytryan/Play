@@ -3,10 +3,11 @@ if(typeof require !== 'undefined'){
 }
 
 describe('Extend Klass', function(){
-  var rect, circle;
+  var rect, circle, star;
   beforeEach(function(){
-    rect = new fabric.Rect();
+    rect   = new fabric.Rect();
     circle = new fabric.Circle();
+    star   = new fabric.Star();
   });
 
   it('fabric klass should have an anim method', function(){
@@ -109,6 +110,53 @@ describe('Extend Klass', function(){
       expect(new fabric.Color(circle.get('fill')).toRgb()).to.equal('rgb(100,100,100)');
       circle.anim(5);
       expect(new fabric.Color(circle.get('fill')).toRgb()).to.equal('rgb(150,150,150)');
+    });
+  });
+
+  describe('Star', function(){
+    describe('Inner Radius', function(){
+      it('should animate increase in inner radius', function(){
+        star.set({ innerRadius: 10 });
+        star.keyframes = { 0: { innerRadius: 10, visible: true }, 10: { innerRadius: 20, visible: true }, index: [0,10] };
+        expect(star.get('innerRadius')).to.equal(10);
+        star.anim(5);
+        expect(star.get('innerRadius')).to.equal(15);
+      });
+
+      it('should animate decrease in inner radius', function(){
+        star.set({ innerRadius: 20 });
+        star.keyframes = {0: { innerRadius: 20, visible: true}, 10: {innerRadius: 10, visible: true}, index: [0,10] };
+        expect(star.get('innerRadius')).to.equal(20);
+        star.anim(5);
+        expect(star.get('innerRadius')).to.equal(15);
+      });
+    });
+
+    describe('Outer Radius', function(){
+      it('should animate increase in outer radius', function(){
+        star.set({ outerRadius: 10 });
+        star.keyframes = { 0: { outerRadius: 10, visible: true }, 10: { outerRadius: 20, visible: true }, index: [0,10] };
+        expect(star.get('outerRadius')).to.equal(10);
+        star.anim(5);
+        expect(star.get('outerRadius')).to.equal(15);
+      });
+
+      it('should animate decrease in inner radius', function(){
+        star.set({ outerRadius: 20 });
+        star.keyframes = {0: { outerRadius: 20, visible: true}, 10: {outerRadius: 10, visible: true}, index: [0,10] };
+        expect(star.get('outerRadius')).to.equal(20);
+        star.anim(5);
+        expect(star.get('outerRadius')).to.equal(15);
+      });
+    });
+
+    describe('Points', function(){
+      it('should animate number of points', function(){
+        star.keyframes = { 0: { numPoints: 0, visible: true }, 10: { numPoints: 10, visible: true }, index: [0,10] };
+        expect(star.get('numPoints')).to.equal(0);
+        star.anim(5);
+        expect(star.get('numPoints')).to.equal(5);
+      });
     });
   });
 });
