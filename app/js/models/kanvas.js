@@ -40,7 +40,7 @@ define(['jquery', 'underscore', 'backbone'],
       // create keyframes
       var properties = this.defaultKlass(type);
       properties['visible'] = false;
-      klass.keyframes ={0: properties, index:[0]};
+      klass.keyframes = {0: properties, index:[0]};
       klass.set('type', type);
       this.stage.setActiveObject(klass);
       // uses farbic add method to insert modified klass objects onto the stage
