@@ -1,9 +1,3 @@
-box-shadow()
-  -webkit-box-shadow: arguments
-  -moz-box-shadow: arguments
-  -o-box-shadow: arguments
-  box-shadow: arguments
-
 html, body
   height: auto
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -35,7 +29,7 @@ body
   width: 100%
   border-bottom: solid 1px rgb(20,20,20)
   box-shadow: inset 0px 1px 0px rgba(255,255,255,0.1)
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(60,60,60)), color-stop(100%,rgb(45,45,45)));
+  background: linear-gradient(rgb(60,60,60), rgb(45,45,45));
 
 .toolbar li
   display: block
@@ -184,11 +178,9 @@ input[type='range']
   height: 5px
 
 input[type='range']::-webkit-slider-thumb
-  -webkit-appearance: none;
   background-color: rgb(220,220,220)
   border: 1px solid rgba(0,0,0,0.8)
   width: 12px
   height: 12px
   border-radius: 50%
-
 
