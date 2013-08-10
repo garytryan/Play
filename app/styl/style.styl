@@ -60,7 +60,8 @@ body
 
 .reel input[type='range']
   width:100%
-  margin-top: 3px
+  position: relative;
+  right: 1px
 
 .properties
   padding: 25px 10px
@@ -106,6 +107,8 @@ body
 
 .properties input[type="range"]
   width: 100%
+  height: 3px
+  border-radius: 3px
 
 .timeline
   box-shadow: inset 0px 1px 0px rgba(255,255,255,0.1)
@@ -146,7 +149,6 @@ body
   border: 1px solid rgba(0,0,0,0.5)
   box-shadow: inset 1px 1px 0px rgba(255,255,255,0.1), inset -1px -1px 0px rgba(0,0,0,0.4)
 
-
 .icon
   height: 20px
   width: 20px
@@ -172,5 +174,21 @@ body
 .playing
   background: url('../img/pause_btn.svg') no-repeat
   height: 20px
+
+// Range bars
+
+input[type='range']
+  -webkit-appearance: none
+  background-color: rgb(32,32,32)
+  border-bottom: 1px solid rgba(255,255,255,0.08)
+  height: 5px
+
+input[type='range']::-webkit-slider-thumb
+  -webkit-appearance: none;
+  background-color: rgb(220,220,220)
+  border: 1px solid rgba(0,0,0,0.8)
+  width: 12px
+  height: 12px
+  border-radius: 50%
 
 
