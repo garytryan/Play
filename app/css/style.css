@@ -8,7 +8,7 @@ body{text-align:center;background-color:#e6e6e6}
 .reel{position:absolute;top:25px;left:0;right:241px;height:20px;text-align:center;background-color:#282828}
 #reelWrapper{position:absolute;left:30px;right:1px;height:20px}
 .reel input[type='range']{width:100%;margin-top:3px}
-.properties{padding:25px 10px;position:absolute;top:24px;right:0;width:220px;bottom:0;overflow-y:scroll;background-color:#2d2d2d;border-left:solid 1px #141414;-webkit-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);-moz-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);-o-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1)}
+.properties{padding:25px 10px;position:absolute;top:25px;right:0;width:220px;bottom:0;overflow-y:scroll;background-color:#2d2d2d;border-left:solid 1px #141414;-webkit-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);-moz-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);-o-box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1);box-shadow:inset 1px 1px 0 rgba(255,255,255,0.1)}
 .properties label,.placeholder{color:#c8c8c8;text-transform:capitalize;font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;letter-spacing:1px;font-size:11px;margin-right:5px}
 .properties .placeholder{color:#1e1e1e;text-shadow:0 1px 1px rgba(255,255,255,0.15);font-size:14px;font-weight:bold;text-align:center;margin-top:20px;display:block}
 .properties input[type="text"]{color:#787878;background-color:transparent;border:none;font-size:10px}
