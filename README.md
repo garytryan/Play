@@ -1,7 +1,6 @@
 kineticUI
 =========
 
-Running the client
 Open app/index.html in a modern webkit browser. You may have to run it on a simple server for files to load.
 
 ##Get started
