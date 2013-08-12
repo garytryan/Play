@@ -1,4 +1,4 @@
-kineticUI
+Play
 =========
 
 Open app/index.html in a modern webkit browser. You may have to run it on a simple server for files to load.
